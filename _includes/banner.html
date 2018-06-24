@@ -1,9 +1,14 @@
 
-<section id="banner" data-vide-bg="{{site.baseurl}}/assets/video/{% if site.video %}{{ site.video }}{% endif %}" data-vide-options="posterType: jpg, loop: true, muted: false, position: 50% 50%">
+<section id="banner" data-vide-bg="{{site.baseurl}}/assets/video/{% if site.video %}{{ site.video }}{% endif %}" data-vide-options="posterType: jpg, loop: true, muted: true, position: 50% 50%">
   <div class="wrapper">
     <div class="content">
-      <h1 class="title">{% if site.banner-title %}{{ site.banner-title }}{% else %}Enjoy Freedom{% endif %}</h1>
-      <h2 class="sub_title">{% if site.banner-desc %}{{ site.banner-desc }}{% else %}"A journey of a thousand miles begins with a single step". — Lao Tzu{% endif %}</h2>
+      <h1 class="title">{% if site.banner-title %}{{ site.banner-title }}{% else %}Low Key Creativity{% endif %}</h1>
+      <div class="slideshow">
+      	<h2 class="sub_title">{% if site.banner-desc1 %}{{ site.banner-desc1 }}{% else %}Exploring aestetics in: Videography{% endif %}</h2>
+      	<h2 class="sub_title">{% if site.banner-desc2 %}{{ site.banner-desc2 }}{% else %}Exploring aestetics in: Coding{% endif %}</h2>
+      	<h2 class="sub_title">{% if site.banner-desc3 %}{{ site.banner-desc3 }}{% else %}Exploring aestetics in: Technology{% endif %}</h2>
+      	<h2 class="sub_title">{% if site.banner-desc4 %}{{ site.banner-desc4 }}{% else %}Exploring aestetics in: Travel{% endif %}</h2>
+      </div>
     </div>
   </div>
 </section> <!-- End Section Banner -->

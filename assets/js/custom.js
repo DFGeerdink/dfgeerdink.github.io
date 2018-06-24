@@ -9,3 +9,14 @@ $(window).scroll(function() {
     $('.top').removeClass("up");
   }
 });
+
+// Text slideshow
+$(document).ready(function(){
+  $(function(){
+    $('.slideshow .sub_title:gt(0)').hide();
+    setInterval(function(){
+      $('.slideshow :first-child').fadeOut(1500).next('.sub_title').fadeIn(1500)
+      .end().appendTo('.slideshow');
+  }, 4000);
+  });
+});

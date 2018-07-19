@@ -4932,3 +4932,15 @@ cite {
     width: 100%;
     height: 400px;
 }
+
+.gmnoprint {
+  visibility: hidden;
+}
+
+.gm-style-cc {
+  visibility: hidden;
+}
+
+body > main > article > div.map > div > div > div:nth-child(3) {
+  visibility: hidden;
+}

@@ -1,38 +1,16 @@
-{% for element in include.interactive %}
-    {% if element.title == include.title %}
-        {% capture parse %}{{ element.gallery }}{% endcapture %}
-        <div data-nanogallery2='{
-            "userID": "162779846@N06",
-            "kind": "flickr",
-            "photoset": "{{ parse }}",
-            "thumbnailWidth": "auto",
-            "thumbnailBorderVertical": 0,
-            "thumbnailBorderHorizontal": 0,
-            "thumbnailHoverEffect2": "imageScaleIn80|borderLighter|labelAppear75",
-            "galleryDisplayMode": "rows",
-            "galleryMaxRows": 1,
-            "galleryLastRowFull": true,
-            "thumbnailAlignment": "center",
-            "thumbnailGutterWidth": 8,
-            "thumbnailGutterHeight": 8
-          }'>
-        </div>
-    {% else %}
-        <div data-nanogallery2='{
-            "userID": "162779846@N06",
-            "kind": "flickr",
-            "photoset": "72157697818924604",
-            "thumbnailWidth": "auto",
-            "thumbnailBorderVertical": 0,
-            "thumbnailBorderHorizontal": 0,
-            "thumbnailHoverEffect2": "imageScaleIn80|borderLighter|labelAppear75",
-            "galleryDisplayMode": "rows",
-            "galleryMaxRows": 1,
-            "galleryLastRowFull": true,
-            "thumbnailAlignment": "center",
-            "thumbnailGutterWidth": 8,
-            "thumbnailGutterHeight": 8
-          }'>
-        </div>
-    {% endif %}
-{% endfor %}
+<div data-nanogallery2='{
+    "userID": "162779846@N06",
+    "kind": "flickr",
+    "photoset": "{{ include.gallery }}",
+    "thumbnailWidth": "auto",
+    "thumbnailBorderVertical": 0,
+    "thumbnailBorderHorizontal": 0,
+    "thumbnailHoverEffect2": "imageScaleIn80|borderLighter|labelAppear75",
+    "galleryDisplayMode": "rows",
+    "galleryMaxRows": 1,
+    "galleryLastRowFull": true,
+    "thumbnailAlignment": "center",
+    "thumbnailGutterWidth": 8,
+    "thumbnailGutterHeight": 8
+  }'>
+</div>

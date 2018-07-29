@@ -1,0 +1,18 @@
+<section class="author" itemprop="author">
+  <div class="details" itemscope itemtype="http://schema.org/Person">
+    <img itemprop="image" class="img-rounded" src="{{ "/assets/img/face.jpg" | prepend: site.baseurl | prepend: site.url }}" alt="{{ site.name }}">
+    <p class="def">Daan Geerdink</p>
+    <p class="desc">{{ site.user_description }}</p>
+    <p>
+      <a itemprop="instagram" href="https://www.instagram.com/{{ site.instagram_username }}" title="Instagram">
+        <svg><use xlink:href="#icon-instagram"></use></svg>
+      </a>
+      <a itemprop="linkedin" href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn">
+        <svg><use xlink:href="#icon-linkedin"></use></svg>
+      </a>
+      <a itemprop="github" href="https://github.com/{{ site.github_username }}" title="Github">
+        <svg><use xlink:href="#icon-github"></use></svg>
+      </a>
+    </p>
+  </div>
+</section>

@@ -1,18 +1,26 @@
 ---
-layout: default
+layout: compress
 ---
-  {% include header.html %}
 
-  {% include banner.html video='timelapse.mp4' desc1='testjeeee' %}
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+    {% include head.html %}
+    <body class="main-page has-push-menu">
+        {% include svg-icons.html %}
+        {% include header.html %}
+            <section class="content">
+	            <section class="banner">
+            		{% include banner.html banner=site.banner title=site.banner-title desc1=site.banner-desc1 desc2=site.banner-desc2 desc3=site.banner-desc3 desc4=site.banner-desc4 %}
+            	</section>
+                <section class="intro">
+                    <h2>This website exhibits some of my creative projects, have a look around!</h2>
+                </section>
+                <section class="blogposts">
+                    <h1>Latest additions to my portfolio:</h1>
+                </section>
+                {{ content }}
+            </section>
+        {% include footer.html %}
+    </body>
+</html>
 
-  <main class="page-content" aria-label="Content">
-  <section class="chapters cf">
-      <div class="wrapper flex-row">
-      {{ content }}
-      </div>
-  </section>
-  </main>
-
-  {% include pagination.html %}
-
-  {% include footer.html %}

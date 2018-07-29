@@ -1,9 +1,54 @@
+<footer>
+    <p>
+      {% if site.github_username %}
+      <a itemprop="github" href="https://github.com/{{ site.github_username }}" title="Github">
+        <svg><use xlink:href="#icon-github"></use></svg>
+      </a>
+      {% endif %}
+      {% if site.facebook_username %}
+      <a itemprop="facebook" href="https://www.facebook.com/{{ site.facebook_username }}" title="Facebook">
+        <svg><use xlink:href="#icon-facebook"></use></svg>
+      </a>
+      {% endif %}
+      {% if site.twitter_username %}
+      <a itemprop="twitter" href="https://twitter.com/{{ site.twitter_username }}" title="Twitter">
+        <svg><use xlink:href="#icon-twitter"></use></svg>
+      </a>
+      {% endif %}
+      {% if site.medium_username %}
+      <a itemprop="medium" href="https://medium.com/@{{ site.medium_username }}" title="Twitter">
+        <svg><use xlink:href="#icon-medium"></use></svg>
+      </a>
+      {% endif %}
+      {% if site.instagram_username %}
+      <a itemprop="instagram" href="https://www.instagram.com/{{ site.instagram_username }}" title="Instagram">
+        <svg><use xlink:href="#icon-instagram"></use></svg>
+      </a>
+      {% endif %}
+      {% if site.linkedin_username %}
+      <a itemprop="linkedin" href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn">
+        <svg><use xlink:href="#icon-linkedin"></use></svg>
+      </a>
+      {% endif %}
+    </p>
+    <ul>
+        {% for link in site.links %}
+          <li><a href="{{ site.url }}{{ site.baseurl }}{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+<!--         <li><a class="feed" href="{{ site.url }}{{site.baseurl}}/feed.xml" title="Atom/RSS feed">Feed</a></li> -->
+    </ul>
+    <p><span>Daan Geerdink © 2018</span></p>
+</footer>
+<script src="{{ "/assets/js/main.js" | prepend: site.baseurl }}"></script>
 
-<footer class="main_footer">
-  <div class="wrapper">
-    {% include social_footer.html %}
-    <div class="copyright">
-      <p>&copy; Daan Geerdink {{site.time | date: '%Y'}} All rights reserved.</a></p>
-    </div>
-  </div>
-</footer> <!-- End Section Footer -->
+<script src="{{ "/assets/js/jquery-3.2.1.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/assets/js/jquery.vide.min.js"  | prepend: site.baseurl }}"></script>
+<script src="{{ "/assets/js/jquery.nanogallery2.min.js" | prepend: site.baseurl }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy5_0kz8jTuCMjrX9hIev4llpx3w79xMI&region=NL"></script>
+<script src="{{ "/assets/js/gmap3.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/assets/js/custom.js" | prepend: site.baseurl }}"></script>
+{% if page.title == 'About' %}
+  <script src="{{ "/assets/js/jquery-albe-timeline.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/assets/js/data-albe-timeline.js" | prepend: site.baseurl }}"></script>
+{% endif %}
+{% include stats.html %}

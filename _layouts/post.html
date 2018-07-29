@@ -1,97 +1,53 @@
----
-layout: default
----
-{% include header.html %}
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/BlogPosting">
+    {% include head.html %}
+    <body class="has-push-menu">
+        {% include minutes-to-read.html %}
+        {% include svg-icons.html %}
+        {% include header.html %}
+        
+        {% if page.banner %}
+            <section class="banner">
+                {% include banner.html banner=page.banner title=page.banner-title desc1=page.banner-desc1 desc2=page.banner-desc2 desc3=page.banner-desc3 desc4=page.banner-desc4 %}
+            </section>
+        {% endif %}
+        <section class="post">
+            <article role="article" id="post" class="post-content" itemprop="articleBody">
+                <p itemprop="post-info" class="post-info">
+                    {% if page.date %}
+                        <svg id="date" class="icon-calendar"><use xlink:href="#icon-calendar"></use></svg>
+                        <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}" class="date">
+                            {% include date.html date=page.date %}
+                        </time>
+                    {% endif %}
+                    <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
+                    <span>{{ minutesText }}</span>
+                </p>
+                <h1 class="post-title" itemprop="name">{{ page.title }}</h1>
+                <p itemprop="description" class="subtitle">{{ page.description }}</p>
+                
+                {% if page.gallery %}
+                    {% include nanogallery.html gallery=page.gallery %}
+                {% else %}
+                    {% if page.image %}
+                        <img src="{{ page.image }}" alt="Post Image" class="post-cover">
+                    {% endif %}
+                {% endif %}
 
-{% include banner.html interactive=site.data.interactive tags=page.tags %}
+                {{ content }}
+            </article>
 
-<main class="post_content">
-  <article class="post">
-    <header>
-      <div class="post_image">
-        <img src={{ "/assets/img/" | prepend: site.baseurl | append : page.img}} alt="{{page.title}}">
-      </div>
-      <div class="post_description">
-        <p class="post_meta">{{page.date | date: '%Y, %b %d'}}</p>
-        <h1 class="post_title">{{page.title}}</h1>
-      </div>
-    </header> <!-- End Header -->
+            <div class="progress-bar" data-minutes="{{ totalMinutes }}">
+                <span class="time-completed"></span>
+                <span class="time-remaining"></span>
+                <div class="bar">
+                    <span class="completed" style="width:0%;"></span>
+                    <span class="remaining" style="width:100%;"></span>
+                </div>
+            </div>
 
-    {% include map.html %}
-
-    <div class="entry_content">
-      <h1>{{page.gallery}}</h1>
-      {{page.content | markdownify}}
-    </div>
-
-    <h1>{{page.title}} Hoi</h1>
-    
-    {% include nanogallery.html gallery=layout.gallery %}
-    
-    <div class="post_wrapper">
-      <footer class="post_footer cf">
-        <div class="post_share">
-          <span>Share:</span>
-          <a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ site.url }}{{ page.url }}" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-          <a href="https://facebook.com/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-          <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true"></i></a>
-        </div>
-        <div class="post_tag">
-          <span>Tags:</span>
-          {% for tag in page.tags %}
-          <a href="{{site.baseurl}}/tags#{{tag}}" class="tag">{{ tag }}</a>
-          {% endfor %}
-        </div>
-      </footer>
-    </div>
-  </article> <!-- End Section Post -->
-
-  <section class="author cf">
-    <div class="post_wrapper">
-      <div class="author_image">
-        <img src="{{site.baseurl}}/assets/img/{% if site.author-pic %}{{ site.author-pic }}{% endif %}" alt="A Portrait of Daan Geerdink">
-      </div>
-      <div class="author_info">
-        <h2 class="author_title">{% if site.author-name %}{{site.author-name}}{% else %}Daan Geerdink{% endif %}</h2>
-        <p class="author_subtitle">{% if site.about-author %}{{site.about-author}}{% else %}There is supposed to be information about me here, apparently something went wrong...{% endif %}</p>
-        <div class="author_social">
-          {% if site.email %}
-          <span class="author_email"><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:{{site.email}}">{{site.email}}</a></span>
-          {% else %}
-          <span class="author_email"><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:dwayne@example.com">daangeerdink@live.nl</a></span>
-          {% endif %}
-          
-          {% if site.phone %}
-          <span class="author_phone"><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{site.phone}}">{{site.phone}}</a></span>
-          {% else %}
-          <span class="author_phone"><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:+496-169-65-57">(496)-169-6557</a></span>
-          {% endif %}
-
-          {% if site.website %}
-          <span class="author_website"><i class="fa fa-link" aria-hidden="true"></i> <a href="{{site.website}}" target="_blank">{{site.website}}</a></span>
-          {% else %}
-          <span class="author_website"><i class="fa fa-link" aria-hidden="true"></i> <a href="#" target="_blank">https://dfgeerdink.github.io</a></span>
-          {% endif %}            
-        </div>
-      </div>
-    </div>
-  </section> <!-- End Section Author -->
-
-  <section class="recent_box">
-    <div class="post_wrapper">
-      <h2 class="recent_title">Recent posts</h2>
-      <div class="recent_list">
-        {% for post in site.posts offset:0 limit:6 %}
-          {% if post.title %}
-            <a href="{{ root_url }}{{ post.url }}" class="recent_item" style="background-image: url( {{ "/assets/img/" | prepend: site.baseurl | append : post.img}} )"><span>{{ post.title }}</span></a>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-  </section> <!-- End Section Recent Box -->
-  
-  {% include disqus.html %}
-  
-</main> <!-- End Section Post Content -->
-
-{% include footer.html %}
+            {% include author.html %}
+            {% include footer.html %}
+        </section>
+    </body>
+</html>

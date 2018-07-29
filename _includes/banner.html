@@ -1,85 +1,12 @@
-{% capture parse_vid %}
-  {% for element in include.interactive %}
-    {% if element.PID == include.PID %}
-      {{ element.banner }}
-    {% endif %}
-  {% endfor %}
-{% endcapture %}
-
-{% capture title %}
-  {% for element in include.interactive %}
-    {% if element.PID == include.PID %}
-      {{ element.title }}
-    {% endif %}
-  {% endfor %}
-{% endcapture %}
-
-{% capture parse_1 %}
-  {% for element in include.interactive %}
-    {% if element.PID == include.PID %}
-      {{ element.desc1 }}
-    {% endif %}
-  {% endfor %}
-{% endcapture %}
-
-{% capture parse_2 %}
-  {% for element in include.interactive %}
-    {% if element.PID == include.PID %}
-      {{ element.desc2 }}
-    {% endif %}
-  {% endfor %}
-{% endcapture %}
-
-{% capture parse_3 %}
-  {% for element in include.interactive %}
-    {% if element.PID == include.PID %}
-      {{ element.desc3 }}
-    {% endif %}
-  {% endfor %}
-{% endcapture %}
-
-{% capture parse_4 %}
-  {% for element in include.interactive %}
-    {% if element.PID == include.PID %}
-      {{ element.desc4 }}
-    {% endif %}
-  {% endfor %}
-{% endcapture %}
-
-<section id="banner" data-vide-bg="{{site.baseurl}}/assets/video/{% if parse_vid %}{{ parse_vid }}{% endif %}" data-vide-options="posterType: jpg, loop: true, muted: true, position: 50% 50%">
+<section id="banner" data-vide-bg="{{site.baseurl}}/assets/video/{{include.banner}}" data-vide-options="posterType: jpg, loop: true, muted: true, position: 50% 50%">
   <div class="wrapper">
     <div class="content">
-      <h1 class="title">
-      {% if title %}
-        {{ title }}
-      {% else %}
-        {{ site.banner-title }}
-      {% endif %}</h1>
+      <h1 class="title">{{ include.title }}</h1>
       <div class="slideshow">
-      	<h2 class="sub_title">
-        {% if parse_1 %}
-          {{ parse_1 }}
-        {% else %}
-          {{ site.banner-desc1 }}
-        {% endif %}</h2>
-      	<h2 class="sub_title">
-        {% if parse_2 %}
-          {{ parse_2 }}
-        {% else %}
-          {{ site.banner-desc2 }}
-        {% endif %}</h2>
-      	<h2 class="sub_title">
-        {% if parse_3 %}
-          {{ parse_3 }}
-        {% else %}
-          {{ site.banner-desc3 }}
-        {% endif %}</h2>
-      	<h2 class="sub_title">
-        {% if parse_4 %}
-          {{ parse_4 }}
-        {% else %}
-          {{ site.banner-desc4 }}
-        {% endif %}</h2>
+      	<h2 class="sub_title">{{ include.desc1 }}</h2>
+      	<h2 class="sub_title">{{ include.desc2 }}</h2>
+      	<h2 class="sub_title">{{ include.desc3 }}</h2>
+      	<h2 class="sub_title">{{ include.desc4 }}</h2>
       </div>
     </div>
   </div>

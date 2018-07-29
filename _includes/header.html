@@ -1,8 +1,18 @@
+<header class="bar-header">
+    <a id="menu">
+        <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
+    </a>
+    <a id="search" class="dosearch">
+        <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
+    </a>
+    <h1 class="logo">
+        <a href="{{ site.baseurl }}/">
+            {{ site.username }}
+        </a>
+    </h1>
+</header>
 
-<header class="main_header">
-  <a href="{{site.baseurl}}/" class="logo">{% if site.logo %}{{site.logo}}{% else %}Daan Geerdink{% endif %}</a>
-  <nav class="main_menu">
-    <a href="{{site.baseurl}}/about/">About</a>
-    <a href="{{site.baseurl}}/contact/">Contact</a>
-  </nav>
-</header> <!-- End Section Header -->
+<div id="mask" class="overlay"></div>
+
+{% include menu.html %}
+{% include search.html %}

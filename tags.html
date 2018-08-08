@@ -12,8 +12,9 @@ description: "Procure por sua #tag favorita."
         <a href="#{{ tag | slugify }}">{{ tag }}</a>
     {% endfor %}
   {% else %}
+    This page lists all my posts, chronologically tagged: 
     {% for tag in tags_list %}
-        This page lists all my articles tagged <a href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a>
+        <a href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a>, 
     {% endfor %}
   {% endif %}
 {% assign tags_list = nil %}

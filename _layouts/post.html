@@ -11,6 +11,11 @@
                 {% include banner.html banner=page.banner title=page.banner-title desc1=page.banner-desc1 desc2=page.banner-desc2 desc3=page.banner-desc3 desc4=page.banner-desc4 %}
             </section>
         {% endif %}
+
+        {% if page.map %}
+            {% include map.html %}
+        {% endif %}
+
         <section class="post">
             <article role="article" id="post" class="post-content" itemprop="articleBody">
                 <p itemprop="post-info" class="post-info">

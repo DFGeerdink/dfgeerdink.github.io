@@ -15,6 +15,9 @@ layout: compress
                             <h1>This... is... coding?</h1>
                         </div>
                     {% endif %}
+                    {% if page.category == 'travel' %}
+                        {% include map.html %}
+                    {% endif %}
             	</section>
                 {{ content }}
             </section>

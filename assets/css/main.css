@@ -1608,3 +1608,16 @@ footer ul a:hover {
 .blogposts h1 {
     color: #ffffff;
 }
+
+.embed-bg {
+    width: 100%;
+    background-color: #000000;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.insta-embed {
+
+    width: 540px;
+    margin: auto;
+}

@@ -3,7 +3,7 @@ title: Daan Geerdink
 email: daangeerdink@live.nl
 description: Some text about your blog.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site
+url: "https://dfgeerdink.github.io/" # the base hostname & protocol for your site
 google_analytics: "UA-XXXXXXXX-X"
 
 # User Settings
@@ -32,6 +32,8 @@ links:
     url: /
   - title: About
     url: /about/
+  - title: Blog Categories
+    url: /category/
   - title: Contact
     url: /contact/
 

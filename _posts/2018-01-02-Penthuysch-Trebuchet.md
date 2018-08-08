@@ -8,7 +8,6 @@ category: 'videography'
 tags:
 - penthuysch
 - videography
-map: 5
 ---
 
 Lorem

@@ -13,14 +13,14 @@ description: "Procure por sua #tag favorita."
     {% endfor %}
   {% else %}
     This page lists all my posts, chronologically tagged: 
-    {% for tag in tags_list %}
+    {% for tag in tags_list reversed %}
         <a href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a>, 
     {% endfor %}
   {% endif %}
 {% assign tags_list = nil %}
 </div>
 
-{% for tag in site.tags  %}
+{% for tag in site.tags reversed %}
     <span class="tag-title" id="{{ tag[0] | slugify }}">{{ tag[0] }}</span>
     <ul class="post-list">
         {% assign pages_list = tag[1] %}

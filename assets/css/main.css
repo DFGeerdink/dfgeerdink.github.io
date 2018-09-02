@@ -488,8 +488,21 @@ aside nav li a:hover {
     content: '';
     z-index: 18;
 }
+.img-responsive {
+    border-radius: 50%}
 .img-rounded {
     border-radius: 50%}
+.img-rounded-trans {
+    border-radius: 50%;
+    transition:all 0.3s ease;
+    -webkit-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);}
+.img-rounded-trans:hover {
+    transition:all 0.3s ease;
+    -webkit-transform: rotateZ(-5deg);
+    -ms-transform: rotateZ(-5deg);
+    transform: rotateZ(-5deg);}
 html, body {
     height: 100%}
 .bar-header {
@@ -900,7 +913,7 @@ main {
     font-size: 1.125rem;
 }
 .post-content a {
-    color: #00e;
+    color: #FF0A16;
     text-decoration: none;
 }
 .post-content iframe {
@@ -1599,6 +1612,15 @@ footer ul a:hover {
 
 .intro h2 {
     color: #ffffff;
+}
+
+.intro h3 {
+    color: #ffffff;
+}
+
+.intro h3 a {
+    color: #FF0A16;
+    text-decoration: none;
 }
 
 .blogposts {

@@ -8,7 +8,7 @@ google_analytics: "UA-XXXXXXXX-X"
 
 # User Settings
 username: Daan Geerdink
-user_description: Portfolio and personal website. Videographer, Gymnast, MSc student Chemical Engineering at Delft University of Technology.
+user_description: Dutch 🇳🇱 | Videographer 📷 | Gymnast 🏅 | MSc student Chemical Engineering at Delft University of Technology 👨‍🔬.
 
 # Social Media
 # Remove the item if you don't need it
@@ -30,10 +30,12 @@ plugins:
 links:
   - title: Home
     url: /
-  - title: About
+  - title: About Me
     url: /about/
   - title: Blog Categories
     url: /category/
+  - title: Business & Collaborations
+    url: /business/
   - title: Contact
     url: /contact/
 

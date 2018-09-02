@@ -1,14 +1,14 @@
 # Site Settings
 title: Daan Geerdink
 email: daangeerdink@live.nl
-description: Some text about your blog.
+description: Portfolio and personal website.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://dfgeerdink.github.io/" # the base hostname & protocol for your site
+url: "https://daangeerdink.nl" # the base hostname & protocol for your site
 google_analytics: "UA-XXXXXXXX-X"
 
 # User Settings
 username: Daan Geerdink
-user_description: Some text about you.
+user_description: Portfolio and personal website. Videographer, Gymnast, MSc student Chemical Engineering at Delft University of Technology.
 
 # Social Media
 # Remove the item if you don't need it

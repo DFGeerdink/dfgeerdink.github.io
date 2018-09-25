@@ -4,7 +4,7 @@ email: daangeerdink@live.nl
 description: Portfolio and personal website.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://daangeerdink.nl" # the base hostname & protocol for your site
-google_analytics: "UA-XXXXXXXX-X"
+google_analytics: "UA-126427192-1"
 
 # User Settings
 username: Daan Geerdink

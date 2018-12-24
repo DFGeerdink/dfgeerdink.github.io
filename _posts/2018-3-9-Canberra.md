@@ -1,0 +1,17 @@
+---
+layout: post
+title: "Canberra"
+date: 2018-3-9 15:00:00
+image: 'https://farm5.staticflickr.com/4804/45536425415_8224fb22a0_o.jpg'
+description: The Nations Capital
+category: 'travel'
+tags:
+- Australia
+- videography
+---
+
+In the battle between Sydney and Melbourne for becomming the capital of Austrialia, a few brave diplomats opted for a third option: Creating a new state called 'Capital Territory' by taking away estate from New South Wales and starting a contest for the planological design of the new capital. This has resulted in a spatial city with many beautiful buildings, beautifully integrated nature and an unexpectedly lively atmosphere (in contrast to Lelystad for instance). We decided to visit this city twice, as we met some of the most wonderful people of the entire trip on our first visit.
+
+### See the video here:
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/162779846@N06/45536425415/in/dateposted-public/" title="Canberra &quot;The Nations Captial&quot;"><img src="https://farm5.staticflickr.com/4804/45536425415_8224fb22a0_o.jpg" width="1920" height="1080" alt="Canberra &quot;The Nations Captial&quot;"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>

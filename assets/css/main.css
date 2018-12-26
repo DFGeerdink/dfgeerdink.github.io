@@ -1639,9 +1639,13 @@ footer ul a:hover {
 }
 
 .insta-embed {
-
     width: 540px;
     margin: auto;
+}
+
+.video-embed {
+	margin: 50px auto;
+	max-width: 800px;
 }
 
 /*GMAP3 API*/

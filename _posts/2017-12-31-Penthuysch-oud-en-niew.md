@@ -18,8 +18,8 @@ Lorem
   <div class="video-embed">
     <script src="{{ "/assets/js/plyr.polyfilled.min.js" | prepend: site.baseurl }}"></script>
     <video id="player" controls playsineline poster="https://farm2.staticflickr.com/1818/43024389005_85c65dca04_o.jpg">
-  <source src="https://www.flickr.com/photos/162779846@N06/43024389005/play/hd/a953046721/ type="video/mp4" size="1080">:
-  <source src="https://www.flickr.com/photos/162779846@N06/43024389005/play/site/a953046721/ type="video/mp4" size="360">:
+  <source src="https://www.flickr.com/photos/162779846@N06/43024389005/play/hd/a953046721/" type="video/mp4" size="1080">:
+  <source src="https://www.flickr.com/photos/162779846@N06/43024389005/play/site/a953046721/" type="video/mp4" size="360">:
   <!-- Fallback for browsers that don't support the <video> element -->
   HTML5 Video not available in your browser
   </video>

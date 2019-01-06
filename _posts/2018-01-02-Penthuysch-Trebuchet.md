@@ -17,7 +17,7 @@ Lorem
 <div class="embed-bg">
   <div class="video-embed">
     <script src="{{ "/assets/js/plyr.polyfilled.min.js" | prepend: site.baseurl }}"></script>
-    <video id="player" controls playsineline poster="https://farm2.staticflickr.com/1818/43024389005_85c65dca04_o.jpg">
+    <video id="player" controls playsineline poster="https://farm2.staticflickr.com/1834/43881296942_e615424e58_o.jpg">
   <source src="https://www.flickr.com/photos/162779846@N06/43881296942/play/hd/e615424e58/" type="video/mp4" size="1080">:
   <source src="https://www.flickr.com/photos/162779846@N06/43881296942/play/site/e615424e58/" type="video/mp4" size="360">:
   <!-- Fallback for browsers that don't support the <video> element -->

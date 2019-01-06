@@ -14,4 +14,15 @@ A beautiful 4 hour walk with a path that respects nature by means of an elevated
 
 ### See the video here:
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/162779846@N06/46398743412/in/dateposted-public/" title="Mt Kosciuszko"><img src="https://farm5.staticflickr.com/4876/46398743412_5a98af7ebb_o.jpg" width="1920" height="1080" alt="Mt Kosciuszko"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<div class="embed-bg">
+  <div class="video-embed">
+    <script src="{{ "/assets/js/plyr.polyfilled.min.js" | prepend: site.baseurl }}"></script>
+    <video id="player" controls playsineline poster="https://farm5.staticflickr.com/4876/46398743412_18e6c96149_z.jpg">
+  <source src="https://www.flickr.com/photos/162779846@N06/46398743412/play/hd/18e6c96149/" type="video/mp4" size="1080">:
+  <source src="https://www.flickr.com/photos/162779846@N06/46398743412/play/site/18e6c96149/" type="video/mp4" size="360">:
+  <!-- Fallback for browsers that don't support the <video> element -->
+  HTML5 Video not available in your browser
+  </video>
+  <script>const player = new Plyr('#player', {controls: ['play-large', 'play', 'progress', 'settings', 'fullscreen'], settings: ['quality'], keyboard: { focused: true, global: true}}); window.player = player;</script>
+  </div>
+</div>

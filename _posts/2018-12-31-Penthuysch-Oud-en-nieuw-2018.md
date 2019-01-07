@@ -2,7 +2,7 @@
 layout: post
 title: "Penthuysch Oud & Nieuw 2018"
 date: 2018-12-12 15:00:00
-image: 'https://farm8.staticflickr.com/7849/46582500802_fc34d576a2_z.jpg'
+image: 'https://farm5.staticflickr.com/4858/46599119511_fe99f8970c_z.jpg'
 description: An epic way to end 2018.
 category: 'videography'
 tags:

@@ -2,7 +2,7 @@
 layout: post
 title: "Central Coast"
 date: 2018-03-04 15:00:00
-image: 'https://farm5.staticflickr.com/4909/46398766562_e04b1a6fdc_o.jpg'
+image: 'https://farm8.staticflickr.com/7874/45735090455_965f4fa445_z.jpg'
 description: Fly fishing on the central coast of New South Wales
 category: 'travel'
 tags:

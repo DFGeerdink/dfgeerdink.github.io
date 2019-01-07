@@ -21,7 +21,7 @@ tags:
   <!-- Fallback for browsers that don't support the <video> element -->
   HTML5 Video not available in your browser
   </video>
-  <script>const player = new Plyr('#player1', {controls: ['play-large', 'play', 'progress', 'settings', 'fullscreen'], settings: ['quality'], keyboard: { focused: true, global: true}}); window.player = player;</script>
+  <script>const player1 = new Plyr('#player1', {controls: ['play-large', 'play', 'progress', 'settings', 'fullscreen'], settings: ['quality'], keyboard: { focused: true, global: true}}); window.player = player;</script>
   </div>
   <div class="video-embed">
     <script src="{{ "/assets/js/plyr.polyfilled.min.js" | prepend: site.baseurl }}"></script>
@@ -31,7 +31,7 @@ tags:
   <!-- Fallback for browsers that don't support the <video> element -->
   HTML5 Video not available in your browser
   </video>
-  <script>const player = new Plyr('#player2', {controls: ['play-large', 'play', 'progress', 'settings', 'fullscreen'], settings: ['quality'], keyboard: { focused: true, global: true}}); window.player = player;</script>
+  <script>const player2 = new Plyr('#player2', {controls: ['play-large', 'play', 'progress', 'settings', 'fullscreen'], settings: ['quality'], keyboard: { focused: true, global: true}}); window.player = player;</script>
   </div>
   <div class="video-embed">
     <script src="{{ "/assets/js/plyr.polyfilled.min.js" | prepend: site.baseurl }}"></script>
@@ -41,6 +41,6 @@ tags:
   <!-- Fallback for browsers that don't support the <video> element -->
   HTML5 Video not available in your browser
   </video>
-  <script>const player = new Plyr('#player3', {controls: ['play-large', 'play', 'progress', 'settings', 'fullscreen'], settings: ['quality'], keyboard: { focused: true, global: true}}); window.player = player;</script>
+  <script>const player3 = new Plyr('#player3', {controls: ['play-large', 'play', 'progress', 'settings', 'fullscreen'], settings: ['quality'], keyboard: { focused: true, global: true}}); window.player = player;</script>
   </div>
 </div>

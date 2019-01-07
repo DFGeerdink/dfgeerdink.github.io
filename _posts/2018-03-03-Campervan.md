@@ -2,7 +2,7 @@
 layout: post
 title: "Campervan"
 date: 2018-03-03 15:00:00
-image: 'https://farm5.staticflickr.com/4869/31509671067_9b28cab2a6_o.jpg'
+image: 'https://farm5.staticflickr.com/4843/32775316198_74812cb724_z.jpg'
 description: The campervan we got to drive in during our roadtrip
 category: 'travel'
 tags:

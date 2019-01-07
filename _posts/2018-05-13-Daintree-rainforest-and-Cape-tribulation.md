@@ -2,7 +2,7 @@
 layout: post
 title: "Daintree Rainforest & Cape Tribulation"
 date: 2018-03-26 15:00:00
-image: 'https://farm2.staticflickr.com/1805/42980196921_1486d93c0b_z.jpg'
+image: 'https://farm8.staticflickr.com/7848/32775931928_6ed27ac2fc_z.jpg'
 description: Where two world heritage nature wonders meet
 category: 'travel'
 tags:
@@ -12,4 +12,15 @@ tags:
 
 ### See the video here:
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/162779846@N06/46398695522/in/album-72157672085696308/" title="Daintree Rainforrest and Cape Tribulation"><img src="https://farm8.staticflickr.com/7834/46398695522_85a0a43784_o.jpg" width="1920" height="1080" alt="Daintree Rainforrest and Cape Tribulation"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<div class="embed-bg">
+  <div class="video-embed">
+    <script src="{{ "/assets/js/plyr.polyfilled.min.js" | prepend: site.baseurl }}"></script>
+    <video id="player" controls playsineline poster="https://farm8.staticflickr.com/7834/46398695522_839116d47d_z.jpg">
+  <source src="https://www.flickr.com/photos/162779846@N06/46398695522/play/hd/839116d47d/" type="video/mp4" size="1080">:
+  <source src="https://www.flickr.com/photos/162779846@N06/46398695522/play/site/839116d47d/" type="video/mp4" size="360">:
+  <!-- Fallback for browsers that don't support the <video> element -->
+  HTML5 Video not available in your browser
+  </video>
+  <script>const player = new Plyr('#player', {controls: ['play-large', 'play', 'progress', 'settings', 'fullscreen'], settings: ['quality'], keyboard: { focused: true, global: true}}); window.player = player;</script>
+  </div>
+</div>

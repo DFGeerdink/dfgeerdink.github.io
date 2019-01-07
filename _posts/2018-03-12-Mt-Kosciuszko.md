@@ -2,7 +2,7 @@
 layout: post
 title: "Mt Kosciuszko"
 date: 2018-03-12 15:00:00
-image: 'https://farm5.staticflickr.com/4876/46398743412_5a98af7ebb_o.jpg'
+image: 'https://farm8.staticflickr.com/7892/31708641997_af761a7f36_z.jpg'
 description: Aussies highest!
 category: 'travel'
 tags:
@@ -10,7 +10,7 @@ tags:
 - videography
 ---
 
-A beautiful 4 hour walk with a path that respects nature by means of an elevated metal grid. A beautiful experience!
+A beautiful 4 hour walk with a path that respects nature by means of an elevated metal grid. An epic experience!
 
 ### See the video here:
 

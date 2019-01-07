@@ -2,7 +2,7 @@
 layout: post
 title: "Singapore"
 date: 2018-02-24 15:00:00
-image: 'https://farm5.staticflickr.com/4808/46449219191_b9071c86b1_o.jpg'
+image: 'https://farm5.staticflickr.com/4808/46449219191_28d9fabb6e_z.jpg'
 description: On my way to Sydney I had an unexpected layover at Singapore.
 category: 'travel'
 tags:

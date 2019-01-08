@@ -12,4 +12,15 @@ tags:
 
 ### See the video here:
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/162779846@N06/45750546365/in/dateposted-public/" title="Stockton Sand Dunes"><img src="https://farm8.staticflickr.com/7863/45750546365_4f9623f519_z.jpg" width="640" height="360" alt="Stockton Sand Dunes"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+<div class="embed-bg">
+  <div class="video-embed">
+    <script src="{{ "/assets/js/plyr.polyfilled.min.js" | prepend: site.baseurl }}"></script>
+    <video id="player" controls playsineline poster="https://farm8.staticflickr.com/7863/45750546365_4f9623f519_z.jpg">
+  <source src="https://www.flickr.com/photos/162779846@N06/45750546365/play/site/4f9623f519/" type="video/mp4" size="1080">:
+  <source src="https://www.flickr.com/photos/162779846@N06/45750546365/play/site/4f9623f519/" type="video/mp4" size="360">:
+  <!-- Fallback for browsers that don't support the <video> element -->
+  HTML5 Video not available in your browser
+  </video>
+  <script>const player = new Plyr('#player', {controls: ['play-large', 'play', 'progress', 'settings', 'fullscreen'], settings: ['quality'], keyboard: { focused: true, global: true}}); window.player = player;</script>
+  </div>
+</div>

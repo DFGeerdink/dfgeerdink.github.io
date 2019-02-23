@@ -9,6 +9,8 @@ tags:
 - videography
 ---
 
+One of the first weekendly excursions from DTU. Together with someone from my buddy group we got on the train to Helsingør. From there it was only a short walk to Kronborg Castle, immortalized as Elsinore in William Shakespeare's play Hamlet. In this part, the sound is only 4 kilometres wide, hence the strategic importance of maintaining a coastal fortification at this location. Kronborg also plays an important role in the history of my hometown: Hoorn. Here, tolls were inned for all ships that wanted to go to the Baltic Sea. The 'Admiraliteit van West-Friesland en het Noorderkwartier' even fought a battle here against the Danes.
+
 ### See the video here:
 
 <div class="embed-bg">

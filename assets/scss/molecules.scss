@@ -1,0 +1,978 @@
+@import 'compass/css3';
+
+
+$ap: ('O' 3.55 #193987) /* oxygen */
+     ('H' 1.6 #da240e) /* hydrogen */
+     ('C' 3.1 #fb9a00) /* carbon */
+     ('N' 3.15 #05ca09) /* nitrogen */
+     ('Cl' 3.7 #ba31fb) /* chlorine */;
+$rCC: (1em)*nth(nth($ap,3),2);
+$rCH: (.5em)*(nth(nth($ap,3),2) + nth(nth($ap,2),2));
+$rCO: (.5em)*(nth(nth($ap,3),2) + nth(nth($ap,1),2));
+$rNO: (.5em)*(nth(nth($ap,4),2) + nth(nth($ap,1),2));
+$rOH: (.5em)*(nth(nth($ap,1),2) + nth(nth($ap,2),2));
+$rNH: (.5em)*(nth(nth($ap,4),2) + nth(nth($ap,2),2));
+$rCN: (.5em)*(nth(nth($ap,3),2) + nth(nth($ap,4),2));
+$rCCl: (.5em)*(nth(nth($ap,3),2) + nth(nth($ap,5),2));
+html {
+  background: black;
+  font: 100% Arial Narrow, sans-serif;
+}
+body { margin: 0; color: #7D7DB0; }
+.set > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+ul {
+  padding: 0;
+  list-style: none;
+  li {
+    margin: 2em;
+  }
+}
+.atom {
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  color: black;
+  &:before {
+    display: block;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 25% 25%,
+          white, rgba(255,255,255,0));
+    .molecules & {
+    animation: rotr 4s linear infinite;
+    animation-play-state: running;
+    }
+    content: '';
+  }
+  &:after {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    text-align: center;
+  }
+  @for $i from 1 through length($ap) {
+    $d: nth(nth($ap, $i), 2)*1em;
+    &[class*=#{nth(nth($ap, $i), 1)}]:before {
+      width: $d; height: $d;
+      background-color: nth(nth($ap, $i), 3);
+    }
+    .atoms &[class*=#{nth(nth($ap, $i), 1)}]:after {
+      $fontfactor: 1.25;
+      font: 700 $fontfactor*1em Arial Narrow;
+      line-height: $d/$fontfactor;
+      content: '#{nth(nth($ap, $i), 1)}';
+    }
+  }
+}
+.molecule-wrap {
+  //outline: solid 1px;
+  perspective: 32em;
+}
+.molecule {
+  min-width: 10em; min-height: 10em;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: transl 4s linear infinite;
+  animation: rot 4s linear infinite;
+  animation-play-state: running;
+  pointer-events: none;
+  .atom {
+    position: absolute;
+    left: 50%; top: 50%;
+    @for $i from 1 through length($ap) {
+      &[class*=#{nth(nth($ap, $i), 1)}] {
+        margin: nth(nth($ap, $i), 2)*(-.5em);
+      }
+    }
+  }
+  .molecule-wrap:hover &,
+  .molecule-wrap:hover & .atom:before {
+    animation-play-state: running;
+  }
+}
+@keyframes transl {
+  to {
+    transform: translate(3em,0);
+  }
+}
+
+@keyframes rot {
+  to {
+    transform: rotate(360deg)
+      rotateY(360deg) rotateX(360deg);
+  }
+}
+@keyframes rotr {
+  to {
+    transform: rotateX(-360deg) rotateY(-360deg)
+      rotate(-360deg);
+  }
+}
+.H2 {
+  $aHOH: 104.45deg;
+  $noH: 1;
+  .O { transform: translateZ(-1em); }
+  @for $i from 1 through $noH {
+    $mya: pow(-1,$i)*$aHOH/2;
+    .H:nth-of-type(#{$i}) {
+      transform: translateZ(-1em) rotateY($mya)
+        translateZ($rOH) rotateY(-$mya);
+    }
+  }
+}
+.H2O {
+  $aHOH: 104.45deg;
+  $noH: 2;
+  .O { transform: translateZ(-1em); }
+  @for $i from 1 through $noH {
+    $mya: pow(-1,$i)*$aHOH/2;
+    .H:nth-of-type(#{$i}) {
+      transform: translateZ(-1em) rotateY($mya)
+        translateZ($rOH) rotateY(-$mya);
+    }
+  }
+}
+.O2 { /* linear molecule */
+  $noO: 2;
+  .C { transform: translateZ(-1em); }
+  @for $i from 1 through $noO {
+    .O:nth-of-type(#{$i+1}) {
+      transform: translateZ(-1em)
+        translateX(pow(-1,$i)*$rCO);
+    }
+  }
+}
+.CO2 { /* linear molecule */
+  $noO: 2;
+  .C { transform: translateZ(-1em); }
+  @for $i from 1 through $noO {
+    .O:nth-of-type(#{$i+1}) {
+      transform: translateZ(-1em)
+        translateX(pow(-1,$i)*$rCO);
+    }
+  }
+}
+.HCN { /* linear molecule */
+  .C { transform: translateZ(-1em); }
+  .H { transform: translateZ(-1em) translateX(-$rCH); }
+  .N { transform: translateZ(-1em) translateX($rCN); }
+}
+.NH3 {
+  /* 27.5942deg = asin(sin(106.7deg/2)/sqrt(3)) */
+  $aHCHx: 27.5942deg;
+  $aHCHy: 120deg;
+  $noH: 3;
+  .N { transform: translateZ(-1em); }
+  @for $i from 1 through $noH {
+    .H:nth-of-type(#{$i + 1}) {
+      transform: translateZ(-1em)
+        rotateY($i*$aHCHy) rotateX(-$aHCHx)
+        translateZ($rNH)
+        rotateX($aHCHx) rotateY(-$i*$aHCHy);
+    }
+  }
+}
+.CH4 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHx: 28.13deg;
+  $aHCHy: 120deg;
+  $noH: 4;
+  .C { transform: translateZ(-1em); }
+  @for $i from 1 to $noH {
+    .H:nth-of-type(#{$i + 1}) {
+      transform: translateZ(-1em)
+        rotateY($i*$aHCHy) rotateX(-$aHCHx)
+        translateZ($rCH)
+        rotateX($aHCHx) rotateY(-$i*$aHCHy);
+    }
+  }
+  .H:last-of-type {
+    transform: translateZ(-1em) rotateX(90deg)
+      translateZ($rCH) rotateX(-90deg);
+  }
+}
+.CH2O {
+  $aHCH: 120deg;
+  $noH: 2;
+  .C { transform: translateZ(-1em); }
+  @for $i from 1 through $noH {
+    .H:nth-of-type(#{$i + 1}) {
+      transform: translateZ(-1em)
+        rotate(pow(-1,$i)*$aHCH/2)
+        translate(-$rCH)
+        rotate(pow(-1,$i+1)*$aHCH/2);
+    }
+  }
+  .O:last-of-type {
+    transform: translateZ(-1em) rotateY(90deg)
+      translateZ($rCO) rotateY(-90deg);
+  }
+}
+.CCl4 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aClCClx: 28.13deg;
+  $aClCCly: 120deg;
+  $noCl: 4;
+  .C { transform: translateZ(-1em); }
+  @for $i from 1 to $noCl {
+    .Cl:nth-of-type(#{$i + 1}) {
+      transform: translateZ(-1em)
+        rotateY($i*$aClCCly) rotateX(-$aClCClx)
+        translateZ($rCCl)
+        rotateX($aClCClx) rotateY(-$i*$aClCCly);
+    }
+  }
+  .Cl:last-of-type {
+    transform: translateZ(-1em) rotateX(90deg)
+      translateZ($rCCl) rotateX(-90deg);
+  }
+}
+.CH3Cl {
+  /* 27.8453deg = asin(sin(108deg/2)/sqrt(3)) */
+  $aHCHx: 27.8453deg;
+  $aHCHy: 120deg;
+  $noH: 3;
+  .C { transform: translateZ(-1em); }
+  @for $i from 1 through $noH {
+    .H:nth-of-type(#{$i + 1}) {
+      transform: translateZ(-1em)
+        rotateY($i*$aHCHy) rotateX(-$aHCHx)
+        translateZ($rCH)
+        rotateX($aHCHx) rotateY(-$i*$aHCHy);
+    }
+  }
+  .Cl:last-child {
+    transform: translateZ(-1em) rotateX(90deg)
+      translateZ($rCCl) rotateX(-90deg);
+  }
+}
+.C2H2 { /* linear molecule */
+  $noa: 2;
+  @for $i from 1 through $noa {
+    .C:nth-of-type(#{$i}) {
+      transform: translateX(pow(-1,$i)*$rCC/2);
+    }
+    .H:nth-of-type(#{$i+2}) {
+      transform: translateX(pow(-1,$i)*($rCC/2 + $rCH));
+    }
+  }
+}
+.C2H4 {
+  $aHCH: 120deg;
+  $no: 2;
+  @for $i from 1 through $no {
+    .C:nth-of-type(#{$i}) {
+      transform: translateX(pow(-1,$i)*$rCC/2);
+    }
+    @for $j from 1 through $no {
+      .H:nth-of-type(#{$no*$i+$j}) {
+        transform: translateX(pow(-1,$i)*$rCC/2)
+          rotate(pow(-1,$j+1)*$aHCH)
+          translate(pow(-1,$i+1)*$rCH)
+          rotate(pow(-1,$j)*$aHCH);
+      }
+    }
+  }
+}
+.C2H6 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHx: 120deg;
+  $aHCHy: 28.13deg;
+  $noC: 2;
+  $noH: 6;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: translateX(pow(-1,$i)*$rCC/2);
+    }
+    @for $j from 1 through $noH/$noC {
+      .H:nth-of-type(#{$i - 1 + $noC*$i + $j}) {
+        transform: translateX(pow(-1,$i)*$rCC/2)
+          rotateX($j*$aHCHx + $i*180deg)
+          rotateY(pow(-1,$i)*$aHCHy)
+          translateZ($rCH)
+          rotateY(pow(-1,$i+1)*$aHCHy)
+          rotateX(-$j*$aHCHx - $i*180deg);
+      }
+    }
+  }
+}
+.C2H3N {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHx: 120deg;
+  $aHCHy: 28.13deg;
+  $noC: 2;
+  $noH: 3;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: translateX(pow(-1,$i)*$rCC/2);
+    }
+  }
+  @for $j from 1 through $noH {
+    .H:nth-of-type(#{$j + $noC}){
+      transform: translateX(-$rCC/2)
+        rotateX($j*$aHCHx)
+        rotateY(-$aHCHy)
+        translateZ($rCH)
+        rotateY($aHCHy)
+        rotateX(-$j*$aHCHx);
+    }
+  }
+  .N { transform: translateX($rCC/2 + $rCN); }
+}
+.C2H4O2 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHx: 120deg;
+  $aHCHy: 28.13deg;
+  $aCCO: 125.5deg 110.5deg;
+  $aCOH: 105deg;
+  $no: 2;
+  $noH: 4;
+  @for $i from 1 through $no {
+    .C:nth-of-type(#{$i}) {
+      transform: translateX(pow(-1,$i)*$rCC/2);
+    }
+    .O:nth-of-type(#{$no + $noH + $i}) {
+      $mya: 180deg - nth($aCCO,$i);
+      transform: translateX($rCC/2)
+        rotate(pow(-1,$i)*$mya)
+        translate($rCO)
+        rotate(pow(-1,$i+1)*$mya);
+    }
+  }
+  @for $i from 1 to $noH {
+    .H:nth-of-type(#{$i + $no}){
+      transform: translateX(-$rCC/2)
+        rotateX($i*$aHCHx - 90deg) rotateY(-$aHCHy)
+        translateZ($rCH)
+        rotateY($aHCHy) rotateX(-$i*$aHCHx + 90deg);
+    }
+  }
+  .H:nth-of-type(#{$no + $noH}) {
+    $mya: 180deg - nth($aCCO,2);
+    transform: translateX($rCC/2)
+      rotate($mya)
+      translate($rCO)
+      rotate(-180deg + $aCOH) translate($rOH)
+      rotate(-$aCOH + nth($aCCO,2));
+  }
+}
+.C2H4O2b {
+  $aHCHy: 28.13deg;
+  $aCCO: 111.6deg 121.3deg;
+  $aHCHx: 120deg;
+  $aCOH: 105deg;
+  $no: 2;
+  $noH: 4;
+  @for $i from 1 through $no {
+    .C:nth-of-type(#{$i}) {
+      transform: translateX(pow(-1,$i)*$rCC/2);
+    }
+    .O:nth-of-type(#{$no + $noH + $i}) {
+      $mya: nth($aCCO,$i);
+      transform: translateX(pow(-1,$i)*$rCC/2)
+        rotate(pow(-1,$i)*$mya)
+        translate(pow(-1,$i+1)*$rCO)
+        rotate(pow(-1,$i+1)*$mya);
+    }
+    .H:nth-of-type(#{$i + $no}){
+      transform: translateX(-$rCC/2)
+        rotateX(-$i*$aHCHx/2) rotateY(-$aHCHy)
+        translateZ($rCH)
+        rotateY($aHCHy) rotateX($i*$aHCHx/2);
+    }
+  }
+  .H:nth-of-type(#{$no + $noH - 1}) {
+    $mya: nth($aCCO,1);
+    transform: translateX(-$rCC/2)
+      rotate(-$mya) translate($rCO) rotate($mya)
+      rotate(180 - $aCOH -$mya)
+      translate($rOH) rotate($aCOH + $mya - 180);
+  }
+  .H:nth-of-type(#{$no + $noH}) {
+    transform: translateX($rCC/2) rotate(180deg - $aHCHx)
+      translate($rCH) rotate($aHCHx - 180deg);
+  }
+}
+.C2H4O2c {
+  $aCOC: 114.8deg;
+  /* 28.3562deg = asin(sin(110.7deg/2)/sqrt(3)) */
+  $aHCHx: 120deg;
+  $aHCHy: 28.3562deg;
+  $aHCO: 109.3deg;
+  $aOCO: 125.9deg;
+  $no: 2;
+  $noH: 4;
+  @for $i from 1 through $no {
+    .C:nth-of-type(#{$i}) {
+      transform: translateZ(-1em)
+        rotate(90deg - pow(-1,$i+1)*$aCOC/2)
+        translate(-$rCO)
+        rotate(pow(-1,$i+1)*$aCOC/2 - 90deg);
+    }
+  }
+  @for $i from 1 to $noH {
+    .H:nth-of-type(#{$i + $no}){
+      transform: translateZ(-1em) rotate($aCOC/2 - 90deg)
+        translate($rCO)
+        rotate(90deg - $aCOC/2)
+        rotateX($i*$aHCHx - 90deg) rotateY($aHCHy)
+        translateZ($rCH)
+        rotateY(-$aHCHy) rotateX(90deg - $i*$aHCHx);
+    }
+  }
+  .H:nth-of-type(#{$no + $noH}) {
+    transform: translateZ(-1em)
+      rotate(90deg - $aCOC/2) translate(-$rCO)
+      rotate($aHCO) translate($rCH)
+      rotate($aCOC/2 - 90deg - $aHCO);
+  }
+  .O:nth-of-type(#{$no + $noH + 1}) {
+    transform: translateZ(-1em)
+      rotate(90deg - $aCOC/2) translate(-$rCO)
+      rotate(-$aOCO) translate($rCO)
+      rotate($aOCO - 90deg + $aCOC/2);
+  }
+  .O:nth-of-type(#{2*$no + $noH}) {
+    transform: translateZ(-1em);
+  }
+}
+.C2H4O {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHx: 120deg;
+  $aHCHy: 28.13deg;
+  $aCCO: 123.9deg;
+  $aCCH: 117.5deg;
+  $noC: 2;
+  $noH: 4;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2);
+    }
+  }
+  @for $i from 1 to $noH {
+    .H:nth-of-type(#{$i + $noC}){
+      transform: translate(-$rCC/2)
+        rotateX($i*$aHCHx + 90deg) rotateY(-$aHCHy)
+        translateZ($rCH)
+        rotateY($aHCHy) rotateX(-90deg - $i*$aHCHx);
+    }
+  }
+  .H:nth-of-type(#{$noC + $noH}) {
+    transform: translate($rCC/2) rotate(180deg - $aCCH)
+      translate($rCH) rotate($aCCH - 180deg);
+  }
+  .O {
+    transform: translate($rCC/2) rotate($aCCO - 180deg)
+      translate($rCO) rotate(180deg - $aCCO);
+  }
+}
+.C2H4Ob {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCH: 120deg;
+  $aCCO: 120deg;
+  $aCCH: 120deg;
+  $aCOH: 109.5deg;
+  $noC: 2;
+  $noH: 4;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2);
+    }
+    .H:nth-of-type(#{$i + $noC}){
+      transform: translate(-$rCC/2)
+        rotate($i*$aHCH)
+        translate($rCH)
+        rotate(-$i*$aHCH);
+    }
+  }
+  .H:nth-of-type(#{$noC + $noH - 1}) {
+    transform: translate($rCC/2) rotate(180deg - $aCCH)
+      translate($rCH) rotate($aCCH - 180deg);
+  }
+  .H:nth-of-type(#{$noC + $noH}) {
+    transform: translate($rCC/2) rotate($aCCO - 180deg)
+      translate($rCO) rotate(180deg - $aCOH)
+      translate($rOH) rotate($aCOH - $aCCO);
+  }
+  .O {
+    transform: translate($rCC/2) rotate($aCCO - 180deg)
+      translate($rCO) rotate(180deg - $aCCO);
+  }
+}
+.C2H4Oc {
+  $aHCHz: 120deg;
+  $aHCHy: 116.75deg;
+  $aCCO: 59.2deg;
+  $aCOC: 61.594deg;
+  $noC: 2;
+  $noH: 4;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2);
+    }
+    @for $j from 1 through $noH/$noC {
+      .H:nth-of-type(#{$noC + ($i - 1)*$noH/$noC + $j}) {
+        transform: translate(pow(-1,$i)*$rCC/2)
+          rotate($i*$aHCHz)
+          rotateY(pow(-1,$j)*$aHCHy)
+          translate(pow(-1,$i)*$rCH)
+          rotateY(pow(-1,$j+1)*$aHCHy)
+          rotate(-$i*$aHCHz);
+      }
+    }
+  }
+  .O {
+    transform: translateY(-$rCO*.9/cos(($aCOC/2)*pi()/180));
+  }
+}
+.C2H6O {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHx: 120deg;
+  $aHCHy: 28.13deg;
+  $aCCO: 107.8deg;
+  $aCOH: 105.4deg;
+  $noC: 2;
+  $noH: 6;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: translateX(pow(-1,$i)*$rCC/2);
+    }
+    @for $j from 1 through $noH/$noC {
+      .H:nth-of-type(#{$i - 1 + $noC*$i + $j}) {
+        transform: translateX(pow(-1,$i)*$rCC/2)
+          rotateX($j*$aHCHx + $i*180deg)
+          rotateY(pow(-1,$i)*$aHCHy)
+          translateZ($rCH)
+          rotateY(pow(-1,$i+1)*$aHCHy)
+          rotateX(-$j*$aHCHx - $i*180deg);
+      }
+    }
+  }
+  .H:nth-of-type(#{$noC + $noH}) {
+    transform: translate($rCC/2)
+      rotateY($aCCO) translate(-$rCO)
+      rotateY(-$aCOH)
+      translate($rOH) rotateY($aCOH - $aCCO);
+
+  }
+  .O {
+    transform: translate($rCC/2)
+      rotateY($aCCO) translate(-$rCO)
+      rotateY(-$aCCO);
+  }
+}
+.C2H6Ob {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHx: 120deg;
+  $aHCHy: 28.13deg;
+  $aCOC: 111.2deg;
+  $noC: 2;
+  $noH: 6;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: translateZ(-1em)
+        rotate(pow(-1,$i)*(90deg - $aCOC/2))
+        translate(pow(-1,$i+1)*$rCO)
+        rotate(pow(-1,$i+1)*(90deg - $aCOC/2));
+    }
+    @for $j from 1 through $noH/$noC {
+      .H:nth-of-type(#{$i - 1 + $noC*$i + $j}) {
+        transform: translateZ(-1em)
+          rotate(pow(-1,$i)*(90deg - $aCOC/2))
+          translate(pow(-1,$i+1)*$rCO)
+          rotateX($j*$aHCHx + 90deg)
+          rotateY(pow(-1,$i)*$aHCHy)
+          translateZ(-$rCH)
+          rotateY(pow(-1,$i+1)*$aHCHy)
+          rotateX(-$j*$aHCHx - 90deg)
+          rotate(pow(-1,$i+1)*(90deg - $aCOC/2));
+      }
+    }
+  }
+  .O {
+    transform: translateZ(-1em);
+  }
+}
+.C2H6O2 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHx: 120deg;
+  $aHCHy: 28.13deg;
+  $aCCO: 110deg;
+  $aCOH: 105deg;
+  $no: 2;
+  $noH: 6;
+  @for $i from 1 through $no {
+    .C:nth-of-type(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2);
+    }
+    .O:nth-of-type(#{$no + $noH + $i}) {
+      transform: translate(pow(-1,$i)*$rCC/2)
+        rotate($aCCO - 180deg)
+        translate(pow(-1,$i)*$rCO)
+        rotate(180deg - $aCCO);
+    }
+    .H:nth-of-type(#{$no + $noH + 1 - $i}) {
+      transform: translate(pow(-1,$i)*$rCC/2)
+        rotate($aCCO - 180deg)
+        translate(pow(-1,$i)*$rCO)
+        rotate(180deg - $aCOH)
+        translate(pow(-1,$i)*$rOH)
+        rotate($aCOH - $aCCO);
+    }
+    @for $j from 1 to $noH/$no {
+      .H:nth-of-type(#{($i - 1)*$no + $no + $j}) {
+        transform: translate(pow(-1,$i)*$rCC/2)
+          rotateX($j*$aHCHx + pow(-1,$i)*90deg)
+          rotateY(pow(-1,$i)*$aHCHy)
+          translateZ($rCH)
+          rotateY(pow(-1,$i+1)*$aHCHy)
+          rotateX(-$j*$aHCHx - pow(-1,$i)*90deg);
+      }
+    }
+  }
+}
+.C2H3NO {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHy: 120deg;
+  $aHCHx: 28.13deg;
+  $aCCO: 110deg;
+  $aCOH: 105deg;
+  $noC: 2;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2);
+    }
+    .H:nth-of-type(#{$noC + $i + 1}) {
+      transform: translate(-$rCC/2)
+        rotateY(pow(-1,$i)*$aHCHy + 90deg)
+        rotateX($aHCHx)
+        translateZ($rCH)
+        rotateX(-$aHCHx)
+        rotateY(pow(-1,$i+1)*$aHCHy - 90deg);
+    }
+  }
+  .H:nth-of-type(#{$noC + 1}) {
+    transform: translate(-$rCC/2) rotate($aCCO)
+      translate($rCO) rotate(-$aCOH)
+      translate(-$rOH) rotate($aCOH - $aCCO);
+  }
+  .O {
+    transform: translate(-$rCC/2) rotate($aCCO)
+      translate($rCO) rotate(-$aCCO);
+  }
+  .N {
+    transform: translate($rCC/2 + $rCN);
+  }
+}
+.C2H3NOb {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCHx: 120deg;
+  $aHCHz: 28.13deg;
+  $aCNC: 120deg;
+  $noC: 2;
+  $noH: 3;
+  .C:first-of-type {
+    transform: translate($rCN/2);
+  }
+  .C:nth-of-type(2) {
+    transform: translate(-$rCN/2) rotate(-$aCNC)
+      translate($rCN) rotate($aCNC);
+  }
+  @for $i from 1 through $noH {
+    .H:nth-of-type(#{$noC + $i}) {
+      transform: translate(-$rCN/2) rotate(-$aCNC)
+        translate($rCN) rotateX($i*$aHCHx) rotate(-$aHCHz)
+        translateY($rCH) rotate($aHCHz) rotateX(-$i*$aHCHx)
+        rotate($aCNC);
+    }
+  }
+  .N { transform: translate(-$rCN/2); }
+  .O { transform: translate($rCN/2 + $rNO) }
+}
+.C3H6 {
+  $aCCC: 60deg;
+  $aHCH: 115deg;
+  $noC: 3;
+  $noH: 6;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: rotate($i*(180deg - $aCCC))
+        translateX($rCC/sqrt(3)) rotate(-$i*(180deg - $aCCC));
+    }
+    @for $j from 1 through $noH/$noC {
+      .H:nth-of-type(#{($i - 1)*$noH/$noC + $noC + $j}) {
+        transform: rotate($i*(180deg - $aCCC))
+          translate($rCC/sqrt(3))
+          rotateY(pow(-1,$j)*$aHCH/2)
+          translate($rCH)
+          rotateY(pow(-1,$j+1)*$aHCH/2)
+          rotate(-$i*(180deg - $aCCC));
+      }
+    }
+  }
+}
+.C3H6b {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCH1: 120deg;
+  $aHCH2: 28.13deg;
+  $aCCC: 124.8deg;
+  $no: 3;
+  @for $i from 1 through $no {
+    @if $i != $no {
+      .C:nth-of-type(#{$i}) {
+        transform: translate(pow(-1,$i)*$rCC/2);
+      }
+    }
+    .H:nth-of-type(#{$no + 2*$i - 1}) {
+      transform: translate($rCC/2) rotate($aCCC - 180deg)
+        translate($rCC) rotateX($i*$aHCH1 - 90deg)
+        rotateY($aHCH2) translateZ($rCH) rotateY(-$aHCH2)
+        rotateX(-$i*$aHCH1 + 90deg) rotate(180deg - $aCCC);
+    }
+    .H:nth-of-type(#{$no + 2*$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2)
+        rotate((1 + pow(-1,$i))*90deg - pow(-1,$i%$no)*$aHCH1)
+        translate($rCH)
+        rotate(pow(-1,$i%$no)*$aHCH1 - (1 + pow(-1,$i))*90deg);
+    }
+  }
+  .C:nth-of-type(#{$no}) {
+    transform: translate($rCC/2) rotate($aCCC - 180deg)
+      translate($rCC) rotate(180deg - $aCCC);
+  }
+}
+.C4H8 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCH1: 120deg;
+  $aHCH2: 28.13deg;
+  $aHCH3: 105.7deg;
+  $aCCC: 125.4deg 112.1deg;
+  $aCCH: 117.1deg;
+  $noC: 4;
+  $noH: 8;
+  @for $i from 1 through $noC/2 {
+    .C:nth-of-type(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2);
+    }
+    .C:nth-of-type(#{$i + $noC/2}) {
+      $mya: nth($aCCC, $i);
+      transform: translate(pow(-1,$i)*$rCC/2) rotate(-$mya)
+        translate(pow(-1,$i+1)*$rCC) rotate($mya);
+    }
+    .H:nth-of-type(#{$i + $noC}) {
+      $mya: nth($aCCC, 1);
+      transform: translate(-$rCC/2) rotate(-$mya)
+        translate($rCC) rotate(pow(-1,$i)*$aHCH1)
+        translate(-$rCH) rotate(pow(-1,$i+1)*$aHCH1)
+        rotate($mya);
+    }
+    .H:nth-of-type(#{$i + 3*$noC/2}) {
+      $mya: 90deg - nth($aCCC,2)/2;
+      transform: translate($rCC/2) rotate($mya)
+        rotateX(pow(-1,$i)*$aHCH3/2 + 90deg)
+        translateZ($rCH)
+        rotateX(pow(-1,$i+1)*$aHCH3/2 - 90deg) rotate(-$mya);
+    }
+  }
+  @for $i from 1 through 3 {
+    .H:nth-of-type(#{2*$noC + $i}) {
+      $mya: nth($aCCC, 2);
+      transform: translate($rCC/2) rotate(-$mya)
+        translate(-$rCC) rotateX($i*$aHCH1 - 90deg)
+        rotateY(-$aHCH2) translateZ($rCH) rotateY($aHCH2)
+        rotateX(-$i*$aHCH1 + 90deg) rotate($mya);
+    }
+  }
+  .H:last-of-type {
+    transform: translate(-$rCC/2) rotate($aCCH)
+      translate($rCH) rotate(-$aCCH);
+  }
+}
+.C4H8b {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCH1: 120deg;
+  $aHCH2: 28.13deg;
+  $aCCC: 125.4deg;
+  $aCCH: 120deg;
+  $noC: 4;
+  $noH: 8;
+  @for $i from 1 through $noC/2 {
+    .C:nth-child(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2);
+    }
+    .C:nth-child(#{$i + $noC/2}) {
+      transform: translate(pow(-1,$i)*$rCC/2)
+        rotate(pow(-1,$i)*$aCCC)
+        translate(pow(-1,$i+1)*$rCC)
+        rotate(pow(-1,$i+1)*$aCCC);
+    }
+    .H:nth-last-of-type(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2)
+        rotate(pow(-1,$i+1)*$aCCH)
+        translate(pow(-1,$i+1)*$rCH)
+        rotate(pow(-1,$i)*$aCCH);
+    }
+    @for $j from 1 through 3 {
+      .H:nth-of-type(#{$noC + ($i - 1)*3 + $j}) {
+        transform: translate(pow(-1,$i)*$rCC/2)
+        rotate(pow(-1,$i)*$aCCC)
+        translate(pow(-1,$i+1)*$rCC)
+        rotateX($j*$aHCH1 + 90deg) rotateY(pow(-1,$i+1)*$aHCH2)
+        translateZ($rCH)
+        rotateY(pow(-1,$i)*$aHCH2) rotateX(-$j*$aHCH1 - 90deg)
+        rotate(pow(-1,$i+1)*$aCCC);
+      }
+    }
+  }
+}
+.C4H8c {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCH1: 120deg;
+  $aHCH2: 28.13deg;
+  $aCCC: 123.8deg;
+  $aCCH: 120deg;
+  $noC: 4;
+  $noH: 8;
+  @for $i from 1 through $noC/2 {
+    .C:nth-child(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2);
+    }
+    .C:nth-child(#{$i + $noC/2}) {
+      transform: translate(pow(-1,$i)*$rCC/2)
+        rotate(-$aCCC)
+        translate(pow(-1,$i+1)*$rCC)
+        rotate($aCCC);
+    }
+    .H:nth-last-of-type(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2)
+        rotate($aCCH)
+        translate(pow(-1,$i+1)*$rCH)
+        rotate(-$aCCH);
+    }
+    @for $j from 1 through 3 {
+      .H:nth-of-type(#{$noC + ($i - 1)*3 + $j}) {
+        transform: translate(pow(-1,$i)*$rCC/2)
+        rotate(-$aCCC)
+        translate(pow(-1,$i+1)*$rCC)
+        rotateX($j*$aHCH1 + pow(-1,$i+1)*90deg)
+        rotateY(pow(-1,$i+1)*$aHCH2)
+        translateZ($rCH)
+        rotateY(pow(-1,$i)*$aHCH2)
+        rotateX(-$j*$aHCH1 + pow(-1,$i)*90deg)
+        rotate($aCCC);
+      }
+    }
+  }
+}
+.C4H8d {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCH1: 120deg;
+  $aHCH2: 28.13deg;
+  $aCCC: 105deg;
+  $aCCH: 120.75deg;
+  $noC: 4;
+  $noH: 8;
+  @for $i from 1 through $noC/2 {
+    .C:nth-child(#{$i}) {
+      transform: translate(pow(-1,$i)*$rCC/2);
+    }
+    .C:nth-child(#{$i + $noC/2}) {
+      transform: translate($rCC/2)
+        rotate(pow(-1,$i+1)*(90deg - $aCCC/2))
+        translateY(pow(-1,$i)*$rCC)
+        rotate(pow(-1,$i)*(90deg - $aCCC/2));
+    }
+    .H:nth-last-of-type(#{$i}) {
+      transform: translate(-$rCC/2)
+        rotate(pow(-1,$i)*(90deg - $aCCH))
+        translateY(pow(-1,$i+1)*$rCH)
+        rotate(pow(-1,$i+1)*(90deg - $aCCH));
+    }
+    @for $j from 1 through 3 {
+      .H:nth-of-type(#{$noC + ($i - 1)*3 + $j}) {
+        transform:  translate($rCC/2)
+        rotate(pow(-1,$i+1)*(90deg - $aCCC/2))
+        translateY(pow(-1,$i)*$rCC)
+        rotateY($j*$aHCH1 + 90deg)
+        rotateX(pow(-1,$i+1)*$aHCH2)
+        translateZ($rCH)
+        rotateX(pow(-1,$i)*$aHCH2)
+        rotateY(-$j*$aHCH1 - 90deg)
+        rotate(pow(-1,$i)*(90deg - $aCCC/2));
+      }
+    }
+  }
+}
+
+.C6H6 {
+  $aCCC: 120deg;
+  $no: 6;
+  @for $i from 1 through $no {
+    .C:nth-of-type(#{$i}) {
+      transform: rotate($i*$aCCC/2)
+        translateX($rCC) rotate(-$i*$aCCC/2);
+    }
+    .H:nth-of-type(#{$i + $no}) {
+      transform: rotate($i*$aCCC/2)
+        translateX($rCC + $rCH) rotate(-$i*$aCCC/2);
+    }
+  }
+}
+.C6H12 {
+  $aCCC: 120deg;
+  $aHCH: 120deg;
+  $noC: 6;
+  $noH: 12;
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: rotate($i*$aCCC/2)
+        translate($rCC) rotate(-$i*$aCCC/2);
+    }
+    @for $j from 1 through $noH/$noC {
+      .H:nth-of-type(#{($i - 1)*$noH/$noC + $noC + $j}) {
+        transform: rotate($i*$aCCC/2) translate($rCC)
+          rotateY(pow(-1,$j)*$aHCH/2 + 90deg)
+          translateZ($rCH)
+          rotateY(pow(-1,$j+1)*$aHCH/2 - 90deg)
+          rotate(-$i*$aCCC/2);
+      }
+    }
+  }
+}
+.C6H12b {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+  $aHCH1: 120deg;
+  $aHCH2: 28.13deg;
+  $aHCCo: 120deg;
+  $noC: 6;
+  $noH: 12;
+  $cR: ($rCC/10)*sqrt(10*sqrt(5) + 50);
+  @for $i from 1 through $noC {
+    .C:nth-of-type(#{$i}) {
+      transform: rotate($i*360deg/($noC - 1))
+        translate($cR) rotate(-$i*360deg/($noC - 1));
+    }
+    @for $j from 1 through ($noH - 2)/($noC - 1) {
+      .H:nth-of-type(#{($i - 1)*($noH - 2)/($noC - 1) + $noC + $j}) {
+        transform: rotate($i*360deg/($noC - 1))
+          translate($cR)
+          rotateY(pow(-1,$j)*$aHCH1)
+          translate(-$rCH) rotateY(pow(-1,$j+1)*$aHCH1)
+          rotate(-$i*360deg/($noC - 1));
+      }
+    }
+  }
+  .C:nth-of-type(#{$noC}){
+    transform: translate($cR) rotateY($aHCCo)
+      translate(-$rCC) rotateY(-$aHCCo);
+  }
+  @for $i from 1 through 3 {
+    .H:nth-last-of-type(#{$i}) {
+      transform: translate($cR) rotateY($aHCCo)
+        translate(-$rCC) rotateX($i*$aHCH1)
+        rotateY($aHCH2) translateZ(-$rCH) rotateY(-$aHCH2)
+        rotateX(-$i*$aHCH1) rotateY(-$aHCCo);
+    }
+  }
+}

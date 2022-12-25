@@ -37,7 +37,7 @@
         {% endfor %}
 <!--         <li><a class="feed" href="{{ site.url }}{{site.baseurl}}/feed.xml" title="Atom/RSS feed">Feed</a></li> -->
     </ul>
-    <p><span>Daan Geerdink © 2018</span></p>
+    <p><span>Daan Geerdink © 2023</span></p>
 </footer>
 <script src="{{ "/assets/js/main.js" | prepend: site.baseurl }}"></script>
 
@@ -47,9 +47,11 @@
 <script src="{{ "/assets/js/plyr.js" | prepend: site.baseurl }}"></script>
 
 <script src="{{ "/assets/js/custom.js" | prepend: site.baseurl }}"></script>
-{% if page.title == 'About' %}
-  <script src="{{ "/assets/js/jquery-albe-timeline.min.js" | prepend: site.baseurl }}"></script>
-  <script src="{{ "/assets/js/data-albe-timeline.js" | prepend: site.baseurl }}"></script>
-{% endif %}
+<!--{% if page.title == 'About' %}-->
+<!--  <script src="{{ "/assets/js/jquery-albe-timeline.min.js" | prepend: site.baseurl }}"></script>-->
+<!--  <script src="{{ "/assets/js/data-albe-timeline.js" | prepend: site.baseurl }}"></script>-->
+<!--{% endif %}-->
+<script type="text/javascript" src="{{ "/assets/js/typewriter.js" | prepend: site.baseurl }}"></script>
+<script type="text/javascript" src="{{ "/assets/js/anim.js" | prepend: site.baseurl }}"></script>
 
 {% include stats.html %}

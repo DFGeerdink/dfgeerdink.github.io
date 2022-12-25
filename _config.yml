@@ -8,7 +8,7 @@ google_analytics: "UA-126427192-1"
 
 # User Settings
 username: Daan Geerdink
-user_description: Dutch 🇳🇱 | Videographer 📷 | Gymnast 🏅 | MSc student Chemical Engineering at Delft University of Technology 👨‍🔬.
+user_description: Dutch 🇳🇱 | Chemical Engineer & Consultant Hydrogen Technology at DNV 👨‍🔬.
 
 # Social Media
 # Remove the item if you don't need it
@@ -34,18 +34,14 @@ links:
     url: /about/
   - title: Blog Categories
     url: /category/
-  - title: Business & Collaborations
-    url: /business/
-  - title: Contact
-    url: /contact/
 
 # Banner
 banner: bannermain.mp4
-banner-title: "Low Key Creativity"
-banner-desc1: "Exploring aestetics in: Videography"
-banner-desc2: "Exploring aestetics in: Travel"
-banner-desc3: "Exploring aestetics in: Coding"
-banner-desc4: "Exploring aestetics in: Technology"
+banner-title: "Curiosity"
+banner-desc1: "Exploring: Videography"
+banner-desc2: "Exploring: Travel"
+banner-desc3: "Exploring: Programming"
+banner-desc4: "Exploring: Technology"
 
 # Exclude my node related stuff
 exclude: ['package.json', 'src', 'node_modules']

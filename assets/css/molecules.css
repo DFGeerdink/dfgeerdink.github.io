@@ -1,0 +1,1379 @@
+/* line 17, ../scss/molecules.scss */
+html {
+  background: black;
+  font: 100% Arial Narrow, sans-serif;
+}
+
+/* line 21, ../scss/molecules.scss */
+body {
+  margin: 0;
+  color: #7D7DB0;
+}
+
+/* line 22, ../scss/molecules.scss */
+.set > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* line 26, ../scss/molecules.scss */
+ul {
+  padding: 0;
+  list-style: none;
+}
+/* line 29, ../scss/molecules.scss */
+ul li {
+  margin: 2em;
+}
+
+/* line 33, ../scss/molecules.scss */
+.atom {
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  color: black;
+}
+/* line 37, ../scss/molecules.scss */
+.atom:before {
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(circle at 25% 25%, #ffffff, rgba(255, 255, 255, 0));
+  content: '';
+}
+/* line 43, ../scss/molecules.scss */
+.molecules .atom:before {
+  animation: rotr 4s linear infinite;
+  animation-play-state: running;
+}
+/* line 49, ../scss/molecules.scss */
+.atom:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+/* line 56, ../scss/molecules.scss */
+.atom[class*=O]:before {
+  width: 3.55em;
+  height: 3.55em;
+  background-color: #193987;
+}
+/* line 60, ../scss/molecules.scss */
+.atoms .atom[class*=O]:after {
+  font: 700 1.25em Arial Narrow;
+  line-height: 2.84em;
+  content: "O";
+}
+/* line 56, ../scss/molecules.scss */
+.atom[class*=H]:before {
+  width: 1.6em;
+  height: 1.6em;
+  background-color: #da240e;
+}
+/* line 60, ../scss/molecules.scss */
+.atoms .atom[class*=H]:after {
+  font: 700 1.25em Arial Narrow;
+  line-height: 1.28em;
+  content: "H";
+}
+/* line 56, ../scss/molecules.scss */
+.atom[class*=C]:before {
+  width: 3.1em;
+  height: 3.1em;
+  background-color: #fb9a00;
+}
+/* line 60, ../scss/molecules.scss */
+.atoms .atom[class*=C]:after {
+  font: 700 1.25em Arial Narrow;
+  line-height: 2.48em;
+  content: "C";
+}
+/* line 56, ../scss/molecules.scss */
+.atom[class*=N]:before {
+  width: 3.15em;
+  height: 3.15em;
+  background-color: #05ca09;
+}
+/* line 60, ../scss/molecules.scss */
+.atoms .atom[class*=N]:after {
+  font: 700 1.25em Arial Narrow;
+  line-height: 2.52em;
+  content: "N";
+}
+/* line 56, ../scss/molecules.scss */
+.atom[class*=Cl]:before {
+  width: 3.7em;
+  height: 3.7em;
+  background-color: #ba31fb;
+}
+/* line 60, ../scss/molecules.scss */
+.atoms .atom[class*=Cl]:after {
+  font: 700 1.25em Arial Narrow;
+  line-height: 2.96em;
+  content: "Cl";
+}
+
+/* line 68, ../scss/molecules.scss */
+.molecule-wrap {
+  perspective: 32em;
+}
+
+/* line 72, ../scss/molecules.scss */
+.molecule {
+  min-width: 10em;
+  min-height: 10em;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: transl 4s linear infinite;
+  animation: rot 4s linear infinite;
+  animation-play-state: running;
+  pointer-events: none;
+}
+/* line 80, ../scss/molecules.scss */
+.molecule .atom {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+/* line 84, ../scss/molecules.scss */
+.molecule .atom[class*=O] {
+  margin: -1.775em;
+}
+/* line 84, ../scss/molecules.scss */
+.molecule .atom[class*=H] {
+  margin: -0.8em;
+}
+/* line 84, ../scss/molecules.scss */
+.molecule .atom[class*=C] {
+  margin: -1.55em;
+}
+/* line 84, ../scss/molecules.scss */
+.molecule .atom[class*=N] {
+  margin: -1.575em;
+}
+/* line 84, ../scss/molecules.scss */
+.molecule .atom[class*=Cl] {
+  margin: -1.85em;
+}
+/* line 89, ../scss/molecules.scss */
+.molecule-wrap:hover .molecule, .molecule-wrap:hover .molecule .atom:before {
+  animation-play-state: running;
+}
+
+@keyframes transl {
+  to {
+    transform: translate(3em, 0);
+  }
+}
+@keyframes rot {
+  to {
+    transform: rotate(360deg) rotateY(360deg) rotateX(360deg);
+  }
+}
+@keyframes rotr {
+  to {
+    transform: rotateX(-360deg) rotateY(-360deg) rotate(-360deg);
+  }
+}
+/* line 115, ../scss/molecules.scss */
+.H2 .O {
+  transform: translateZ(-1em);
+}
+/* line 118, ../scss/molecules.scss */
+.H2 .H:nth-of-type(1) {
+  transform: translateZ(-1em) rotateY(-52.225deg) translateZ(2.575em) rotateY(52.225deg);
+}
+
+/* line 127, ../scss/molecules.scss */
+.H2O .O {
+  transform: translateZ(-1em);
+}
+/* line 130, ../scss/molecules.scss */
+.H2O .H:nth-of-type(1) {
+  transform: translateZ(-1em) rotateY(-52.225deg) translateZ(2.575em) rotateY(52.225deg);
+}
+/* line 130, ../scss/molecules.scss */
+.H2O .H:nth-of-type(2) {
+  transform: translateZ(-1em) rotateY(52.225deg) translateZ(2.575em) rotateY(-52.225deg);
+}
+
+/* line 136, ../scss/molecules.scss */
+.O2 {
+  /* linear molecule */
+}
+/* line 138, ../scss/molecules.scss */
+.O2 .C {
+  transform: translateZ(-1em);
+}
+/* line 140, ../scss/molecules.scss */
+.O2 .O:nth-of-type(2) {
+  transform: translateZ(-1em) translateX(-3.325em);
+}
+/* line 140, ../scss/molecules.scss */
+.O2 .O:nth-of-type(3) {
+  transform: translateZ(-1em) translateX(3.325em);
+}
+
+/* line 146, ../scss/molecules.scss */
+.CO2 {
+  /* linear molecule */
+}
+/* line 148, ../scss/molecules.scss */
+.CO2 .C {
+  transform: translateZ(-1em);
+}
+/* line 150, ../scss/molecules.scss */
+.CO2 .O:nth-of-type(2) {
+  transform: translateZ(-1em) translateX(-3.325em);
+}
+/* line 150, ../scss/molecules.scss */
+.CO2 .O:nth-of-type(3) {
+  transform: translateZ(-1em) translateX(3.325em);
+}
+
+/* line 156, ../scss/molecules.scss */
+.HCN {
+  /* linear molecule */
+}
+/* line 157, ../scss/molecules.scss */
+.HCN .C {
+  transform: translateZ(-1em);
+}
+/* line 158, ../scss/molecules.scss */
+.HCN .H {
+  transform: translateZ(-1em) translateX(-2.35em);
+}
+/* line 159, ../scss/molecules.scss */
+.HCN .N {
+  transform: translateZ(-1em) translateX(3.125em);
+}
+
+/* line 161, ../scss/molecules.scss */
+.NH3 {
+  /* 27.5942deg = asin(sin(106.7deg/2)/sqrt(3)) */
+}
+/* line 166, ../scss/molecules.scss */
+.NH3 .N {
+  transform: translateZ(-1em);
+}
+/* line 168, ../scss/molecules.scss */
+.NH3 .H:nth-of-type(2) {
+  transform: translateZ(-1em) rotateY(120deg) rotateX(-27.5942deg) translateZ(2.375em) rotateX(27.5942deg) rotateY(-120deg);
+}
+/* line 168, ../scss/molecules.scss */
+.NH3 .H:nth-of-type(3) {
+  transform: translateZ(-1em) rotateY(240deg) rotateX(-27.5942deg) translateZ(2.375em) rotateX(27.5942deg) rotateY(-240deg);
+}
+/* line 168, ../scss/molecules.scss */
+.NH3 .H:nth-of-type(4) {
+  transform: translateZ(-1em) rotateY(360deg) rotateX(-27.5942deg) translateZ(2.375em) rotateX(27.5942deg) rotateY(-360deg);
+}
+
+/* line 176, ../scss/molecules.scss */
+.CH4 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 181, ../scss/molecules.scss */
+.CH4 .C {
+  transform: translateZ(-1em);
+}
+/* line 183, ../scss/molecules.scss */
+.CH4 .H:nth-of-type(2) {
+  transform: translateZ(-1em) rotateY(120deg) rotateX(-28.13deg) translateZ(2.35em) rotateX(28.13deg) rotateY(-120deg);
+}
+/* line 183, ../scss/molecules.scss */
+.CH4 .H:nth-of-type(3) {
+  transform: translateZ(-1em) rotateY(240deg) rotateX(-28.13deg) translateZ(2.35em) rotateX(28.13deg) rotateY(-240deg);
+}
+/* line 183, ../scss/molecules.scss */
+.CH4 .H:nth-of-type(4) {
+  transform: translateZ(-1em) rotateY(360deg) rotateX(-28.13deg) translateZ(2.35em) rotateX(28.13deg) rotateY(-360deg);
+}
+/* line 190, ../scss/molecules.scss */
+.CH4 .H:last-of-type {
+  transform: translateZ(-1em) rotateX(90deg) translateZ(2.35em) rotateX(-90deg);
+}
+
+/* line 198, ../scss/molecules.scss */
+.CH2O .C {
+  transform: translateZ(-1em);
+}
+/* line 200, ../scss/molecules.scss */
+.CH2O .H:nth-of-type(2) {
+  transform: translateZ(-1em) rotate(-60deg) translate(-2.35em) rotate(60deg);
+}
+/* line 200, ../scss/molecules.scss */
+.CH2O .H:nth-of-type(3) {
+  transform: translateZ(-1em) rotate(60deg) translate(-2.35em) rotate(-60deg);
+}
+/* line 207, ../scss/molecules.scss */
+.CH2O .O:last-of-type {
+  transform: translateZ(-1em) rotateY(90deg) translateZ(3.325em) rotateY(-90deg);
+}
+
+/* line 212, ../scss/molecules.scss */
+.CCl4 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 217, ../scss/molecules.scss */
+.CCl4 .C {
+  transform: translateZ(-1em);
+}
+/* line 219, ../scss/molecules.scss */
+.CCl4 .Cl:nth-of-type(2) {
+  transform: translateZ(-1em) rotateY(120deg) rotateX(-28.13deg) translateZ(3.4em) rotateX(28.13deg) rotateY(-120deg);
+}
+/* line 219, ../scss/molecules.scss */
+.CCl4 .Cl:nth-of-type(3) {
+  transform: translateZ(-1em) rotateY(240deg) rotateX(-28.13deg) translateZ(3.4em) rotateX(28.13deg) rotateY(-240deg);
+}
+/* line 219, ../scss/molecules.scss */
+.CCl4 .Cl:nth-of-type(4) {
+  transform: translateZ(-1em) rotateY(360deg) rotateX(-28.13deg) translateZ(3.4em) rotateX(28.13deg) rotateY(-360deg);
+}
+/* line 226, ../scss/molecules.scss */
+.CCl4 .Cl:last-of-type {
+  transform: translateZ(-1em) rotateX(90deg) translateZ(3.4em) rotateX(-90deg);
+}
+
+/* line 231, ../scss/molecules.scss */
+.CH3Cl {
+  /* 27.8453deg = asin(sin(108deg/2)/sqrt(3)) */
+}
+/* line 236, ../scss/molecules.scss */
+.CH3Cl .C {
+  transform: translateZ(-1em);
+}
+/* line 238, ../scss/molecules.scss */
+.CH3Cl .H:nth-of-type(2) {
+  transform: translateZ(-1em) rotateY(120deg) rotateX(-27.8453deg) translateZ(2.35em) rotateX(27.8453deg) rotateY(-120deg);
+}
+/* line 238, ../scss/molecules.scss */
+.CH3Cl .H:nth-of-type(3) {
+  transform: translateZ(-1em) rotateY(240deg) rotateX(-27.8453deg) translateZ(2.35em) rotateX(27.8453deg) rotateY(-240deg);
+}
+/* line 238, ../scss/molecules.scss */
+.CH3Cl .H:nth-of-type(4) {
+  transform: translateZ(-1em) rotateY(360deg) rotateX(-27.8453deg) translateZ(2.35em) rotateX(27.8453deg) rotateY(-360deg);
+}
+/* line 245, ../scss/molecules.scss */
+.CH3Cl .Cl:last-child {
+  transform: translateZ(-1em) rotateX(90deg) translateZ(3.4em) rotateX(-90deg);
+}
+
+/* line 250, ../scss/molecules.scss */
+.C2H2 {
+  /* linear molecule */
+}
+/* line 253, ../scss/molecules.scss */
+.C2H2 .C:nth-of-type(1) {
+  transform: translateX(-1.55em);
+}
+/* line 256, ../scss/molecules.scss */
+.C2H2 .H:nth-of-type(3) {
+  transform: translateX(-3.9em);
+}
+/* line 253, ../scss/molecules.scss */
+.C2H2 .C:nth-of-type(2) {
+  transform: translateX(1.55em);
+}
+/* line 256, ../scss/molecules.scss */
+.C2H2 .H:nth-of-type(4) {
+  transform: translateX(3.9em);
+}
+
+/* line 265, ../scss/molecules.scss */
+.C2H4 .C:nth-of-type(1) {
+  transform: translateX(-1.55em);
+}
+/* line 269, ../scss/molecules.scss */
+.C2H4 .H:nth-of-type(3) {
+  transform: translateX(-1.55em) rotate(120deg) translate(2.35em) rotate(-120deg);
+}
+/* line 269, ../scss/molecules.scss */
+.C2H4 .H:nth-of-type(4) {
+  transform: translateX(-1.55em) rotate(-120deg) translate(2.35em) rotate(120deg);
+}
+/* line 265, ../scss/molecules.scss */
+.C2H4 .C:nth-of-type(2) {
+  transform: translateX(1.55em);
+}
+/* line 269, ../scss/molecules.scss */
+.C2H4 .H:nth-of-type(5) {
+  transform: translateX(1.55em) rotate(120deg) translate(-2.35em) rotate(-120deg);
+}
+/* line 269, ../scss/molecules.scss */
+.C2H4 .H:nth-of-type(6) {
+  transform: translateX(1.55em) rotate(-120deg) translate(-2.35em) rotate(120deg);
+}
+
+/* line 278, ../scss/molecules.scss */
+.C2H6 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 285, ../scss/molecules.scss */
+.C2H6 .C:nth-of-type(1) {
+  transform: translateX(-1.55em);
+}
+/* line 289, ../scss/molecules.scss */
+.C2H6 .H:nth-of-type(3) {
+  transform: translateX(-1.55em) rotateX(300deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-300deg);
+}
+/* line 289, ../scss/molecules.scss */
+.C2H6 .H:nth-of-type(4) {
+  transform: translateX(-1.55em) rotateX(420deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-420deg);
+}
+/* line 289, ../scss/molecules.scss */
+.C2H6 .H:nth-of-type(5) {
+  transform: translateX(-1.55em) rotateX(540deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-540deg);
+}
+/* line 285, ../scss/molecules.scss */
+.C2H6 .C:nth-of-type(2) {
+  transform: translateX(1.55em);
+}
+/* line 289, ../scss/molecules.scss */
+.C2H6 .H:nth-of-type(6) {
+  transform: translateX(1.55em) rotateX(480deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-480deg);
+}
+/* line 289, ../scss/molecules.scss */
+.C2H6 .H:nth-of-type(7) {
+  transform: translateX(1.55em) rotateX(600deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-600deg);
+}
+/* line 289, ../scss/molecules.scss */
+.C2H6 .H:nth-of-type(8) {
+  transform: translateX(1.55em) rotateX(720deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-720deg);
+}
+
+/* line 300, ../scss/molecules.scss */
+.C2H3N {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 307, ../scss/molecules.scss */
+.C2H3N .C:nth-of-type(1) {
+  transform: translateX(-1.55em);
+}
+/* line 307, ../scss/molecules.scss */
+.C2H3N .C:nth-of-type(2) {
+  transform: translateX(1.55em);
+}
+/* line 312, ../scss/molecules.scss */
+.C2H3N .H:nth-of-type(3) {
+  transform: translateX(-1.55em) rotateX(120deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-120deg);
+}
+/* line 312, ../scss/molecules.scss */
+.C2H3N .H:nth-of-type(4) {
+  transform: translateX(-1.55em) rotateX(240deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-240deg);
+}
+/* line 312, ../scss/molecules.scss */
+.C2H3N .H:nth-of-type(5) {
+  transform: translateX(-1.55em) rotateX(360deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-360deg);
+}
+/* line 321, ../scss/molecules.scss */
+.C2H3N .N {
+  transform: translateX(4.675em);
+}
+
+/* line 323, ../scss/molecules.scss */
+.C2H4O2 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 332, ../scss/molecules.scss */
+.C2H4O2 .C:nth-of-type(1) {
+  transform: translateX(-1.55em);
+}
+/* line 335, ../scss/molecules.scss */
+.C2H4O2 .O:nth-of-type(7) {
+  transform: translateX(1.55em) rotate(-54.5deg) translate(3.325em) rotate(54.5deg);
+}
+/* line 332, ../scss/molecules.scss */
+.C2H4O2 .C:nth-of-type(2) {
+  transform: translateX(1.55em);
+}
+/* line 335, ../scss/molecules.scss */
+.C2H4O2 .O:nth-of-type(8) {
+  transform: translateX(1.55em) rotate(69.5deg) translate(3.325em) rotate(-69.5deg);
+}
+/* line 344, ../scss/molecules.scss */
+.C2H4O2 .H:nth-of-type(3) {
+  transform: translateX(-1.55em) rotateX(30deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-30deg);
+}
+/* line 344, ../scss/molecules.scss */
+.C2H4O2 .H:nth-of-type(4) {
+  transform: translateX(-1.55em) rotateX(150deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-150deg);
+}
+/* line 344, ../scss/molecules.scss */
+.C2H4O2 .H:nth-of-type(5) {
+  transform: translateX(-1.55em) rotateX(270deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-270deg);
+}
+/* line 351, ../scss/molecules.scss */
+.C2H4O2 .H:nth-of-type(6) {
+  transform: translateX(1.55em) rotate(69.5deg) translate(3.325em) rotate(-75deg) translate(2.575em) rotate(5.5deg);
+}
+
+/* line 368, ../scss/molecules.scss */
+.C2H4O2b .C:nth-of-type(1) {
+  transform: translateX(-1.55em);
+}
+/* line 371, ../scss/molecules.scss */
+.C2H4O2b .O:nth-of-type(7) {
+  transform: translateX(-1.55em) rotate(-111.6deg) translate(3.325em) rotate(111.6deg);
+}
+/* line 378, ../scss/molecules.scss */
+.C2H4O2b .H:nth-of-type(3) {
+  transform: translateX(-1.55em) rotateX(-60deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(60deg);
+}
+/* line 368, ../scss/molecules.scss */
+.C2H4O2b .C:nth-of-type(2) {
+  transform: translateX(1.55em);
+}
+/* line 371, ../scss/molecules.scss */
+.C2H4O2b .O:nth-of-type(8) {
+  transform: translateX(1.55em) rotate(121.3deg) translate(-3.325em) rotate(-121.3deg);
+}
+/* line 378, ../scss/molecules.scss */
+.C2H4O2b .H:nth-of-type(4) {
+  transform: translateX(-1.55em) rotateX(-120deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(120deg);
+}
+/* line 385, ../scss/molecules.scss */
+.C2H4O2b .H:nth-of-type(5) {
+  transform: translateX(-1.55em) rotate(-111.6deg) translate(3.325em) rotate(111.6deg) rotate(-36.6deg) translate(2.575em) rotate(36.6deg);
+}
+/* line 392, ../scss/molecules.scss */
+.C2H4O2b .H:nth-of-type(6) {
+  transform: translateX(1.55em) rotate(60deg) translate(2.35em) rotate(-60deg);
+}
+
+/* line 397, ../scss/molecules.scss */
+.C2H4O2c {
+  /* 28.3562deg = asin(sin(110.7deg/2)/sqrt(3)) */
+}
+/* line 407, ../scss/molecules.scss */
+.C2H4O2c .C:nth-of-type(1) {
+  transform: translateZ(-1em) rotate(32.6deg) translate(-3.325em) rotate(-32.6deg);
+}
+/* line 407, ../scss/molecules.scss */
+.C2H4O2c .C:nth-of-type(2) {
+  transform: translateZ(-1em) rotate(147.4deg) translate(-3.325em) rotate(-147.4deg);
+}
+/* line 415, ../scss/molecules.scss */
+.C2H4O2c .H:nth-of-type(3) {
+  transform: translateZ(-1em) rotate(-32.6deg) translate(3.325em) rotate(32.6deg) rotateX(30deg) rotateY(28.3562deg) translateZ(2.35em) rotateY(-28.3562deg) rotateX(-30deg);
+}
+/* line 415, ../scss/molecules.scss */
+.C2H4O2c .H:nth-of-type(4) {
+  transform: translateZ(-1em) rotate(-32.6deg) translate(3.325em) rotate(32.6deg) rotateX(150deg) rotateY(28.3562deg) translateZ(2.35em) rotateY(-28.3562deg) rotateX(-150deg);
+}
+/* line 415, ../scss/molecules.scss */
+.C2H4O2c .H:nth-of-type(5) {
+  transform: translateZ(-1em) rotate(-32.6deg) translate(3.325em) rotate(32.6deg) rotateX(270deg) rotateY(28.3562deg) translateZ(2.35em) rotateY(-28.3562deg) rotateX(-270deg);
+}
+/* line 424, ../scss/molecules.scss */
+.C2H4O2c .H:nth-of-type(6) {
+  transform: translateZ(-1em) rotate(32.6deg) translate(-3.325em) rotate(109.3deg) translate(2.35em) rotate(-141.9deg);
+}
+/* line 430, ../scss/molecules.scss */
+.C2H4O2c .O:nth-of-type(7) {
+  transform: translateZ(-1em) rotate(32.6deg) translate(-3.325em) rotate(-125.9deg) translate(3.325em) rotate(93.3deg);
+}
+/* line 436, ../scss/molecules.scss */
+.C2H4O2c .O:nth-of-type(8) {
+  transform: translateZ(-1em);
+}
+
+/* line 440, ../scss/molecules.scss */
+.C2H4O {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 449, ../scss/molecules.scss */
+.C2H4O .C:nth-of-type(1) {
+  transform: translate(-1.55em);
+}
+/* line 449, ../scss/molecules.scss */
+.C2H4O .C:nth-of-type(2) {
+  transform: translate(1.55em);
+}
+/* line 454, ../scss/molecules.scss */
+.C2H4O .H:nth-of-type(3) {
+  transform: translate(-1.55em) rotateX(210deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-210deg);
+}
+/* line 454, ../scss/molecules.scss */
+.C2H4O .H:nth-of-type(4) {
+  transform: translate(-1.55em) rotateX(330deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-330deg);
+}
+/* line 454, ../scss/molecules.scss */
+.C2H4O .H:nth-of-type(5) {
+  transform: translate(-1.55em) rotateX(450deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-450deg);
+}
+/* line 461, ../scss/molecules.scss */
+.C2H4O .H:nth-of-type(6) {
+  transform: translate(1.55em) rotate(62.5deg) translate(2.35em) rotate(-62.5deg);
+}
+/* line 465, ../scss/molecules.scss */
+.C2H4O .O {
+  transform: translate(1.55em) rotate(-56.1deg) translate(3.325em) rotate(56.1deg);
+}
+
+/* line 470, ../scss/molecules.scss */
+.C2H4Ob {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 479, ../scss/molecules.scss */
+.C2H4Ob .C:nth-of-type(1) {
+  transform: translate(-1.55em);
+}
+/* line 482, ../scss/molecules.scss */
+.C2H4Ob .H:nth-of-type(3) {
+  transform: translate(-1.55em) rotate(120deg) translate(2.35em) rotate(-120deg);
+}
+/* line 479, ../scss/molecules.scss */
+.C2H4Ob .C:nth-of-type(2) {
+  transform: translate(1.55em);
+}
+/* line 482, ../scss/molecules.scss */
+.C2H4Ob .H:nth-of-type(4) {
+  transform: translate(-1.55em) rotate(240deg) translate(2.35em) rotate(-240deg);
+}
+/* line 489, ../scss/molecules.scss */
+.C2H4Ob .H:nth-of-type(5) {
+  transform: translate(1.55em) rotate(60deg) translate(2.35em) rotate(-60deg);
+}
+/* line 493, ../scss/molecules.scss */
+.C2H4Ob .H:nth-of-type(6) {
+  transform: translate(1.55em) rotate(-60deg) translate(3.325em) rotate(70.5deg) translate(2.575em) rotate(-10.5deg);
+}
+/* line 498, ../scss/molecules.scss */
+.C2H4Ob .O {
+  transform: translate(1.55em) rotate(-60deg) translate(3.325em) rotate(60deg);
+}
+
+/* line 511, ../scss/molecules.scss */
+.C2H4Oc .C:nth-of-type(1) {
+  transform: translate(-1.55em);
+}
+/* line 515, ../scss/molecules.scss */
+.C2H4Oc .H:nth-of-type(3) {
+  transform: translate(-1.55em) rotate(120deg) rotateY(-116.75deg) translate(-2.35em) rotateY(116.75deg) rotate(-120deg);
+}
+/* line 515, ../scss/molecules.scss */
+.C2H4Oc .H:nth-of-type(4) {
+  transform: translate(-1.55em) rotate(120deg) rotateY(116.75deg) translate(-2.35em) rotateY(-116.75deg) rotate(-120deg);
+}
+/* line 511, ../scss/molecules.scss */
+.C2H4Oc .C:nth-of-type(2) {
+  transform: translate(1.55em);
+}
+/* line 515, ../scss/molecules.scss */
+.C2H4Oc .H:nth-of-type(5) {
+  transform: translate(1.55em) rotate(240deg) rotateY(-116.75deg) translate(2.35em) rotateY(116.75deg) rotate(-240deg);
+}
+/* line 515, ../scss/molecules.scss */
+.C2H4Oc .H:nth-of-type(6) {
+  transform: translate(1.55em) rotate(240deg) rotateY(116.75deg) translate(2.35em) rotateY(-116.75deg) rotate(-240deg);
+}
+/* line 525, ../scss/molecules.scss */
+.C2H4Oc .O {
+  transform: translateY(-2.99263em);
+}
+
+/* line 529, ../scss/molecules.scss */
+.C2H6O {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 538, ../scss/molecules.scss */
+.C2H6O .C:nth-of-type(1) {
+  transform: translateX(-1.55em);
+}
+/* line 542, ../scss/molecules.scss */
+.C2H6O .H:nth-of-type(3) {
+  transform: translateX(-1.55em) rotateX(300deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-300deg);
+}
+/* line 542, ../scss/molecules.scss */
+.C2H6O .H:nth-of-type(4) {
+  transform: translateX(-1.55em) rotateX(420deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-420deg);
+}
+/* line 542, ../scss/molecules.scss */
+.C2H6O .H:nth-of-type(5) {
+  transform: translateX(-1.55em) rotateX(540deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-540deg);
+}
+/* line 538, ../scss/molecules.scss */
+.C2H6O .C:nth-of-type(2) {
+  transform: translateX(1.55em);
+}
+/* line 542, ../scss/molecules.scss */
+.C2H6O .H:nth-of-type(6) {
+  transform: translateX(1.55em) rotateX(480deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-480deg);
+}
+/* line 542, ../scss/molecules.scss */
+.C2H6O .H:nth-of-type(7) {
+  transform: translateX(1.55em) rotateX(600deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-600deg);
+}
+/* line 542, ../scss/molecules.scss */
+.C2H6O .H:nth-of-type(8) {
+  transform: translateX(1.55em) rotateX(720deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-720deg);
+}
+/* line 552, ../scss/molecules.scss */
+.C2H6O .H:nth-of-type(8) {
+  transform: translate(1.55em) rotateY(107.8deg) translate(-3.325em) rotateY(-105.4deg) translate(2.575em) rotateY(-2.4deg);
+}
+/* line 559, ../scss/molecules.scss */
+.C2H6O .O {
+  transform: translate(1.55em) rotateY(107.8deg) translate(-3.325em) rotateY(-107.8deg);
+}
+
+/* line 565, ../scss/molecules.scss */
+.C2H6Ob {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 573, ../scss/molecules.scss */
+.C2H6Ob .C:nth-of-type(1) {
+  transform: translateZ(-1em) rotate(-34.4deg) translate(3.325em) rotate(34.4deg);
+}
+/* line 580, ../scss/molecules.scss */
+.C2H6Ob .H:nth-of-type(3) {
+  transform: translateZ(-1em) rotate(-34.4deg) translate(3.325em) rotateX(210deg) rotateY(-28.13deg) translateZ(-2.35em) rotateY(28.13deg) rotateX(-210deg) rotate(34.4deg);
+}
+/* line 580, ../scss/molecules.scss */
+.C2H6Ob .H:nth-of-type(4) {
+  transform: translateZ(-1em) rotate(-34.4deg) translate(3.325em) rotateX(330deg) rotateY(-28.13deg) translateZ(-2.35em) rotateY(28.13deg) rotateX(-330deg) rotate(34.4deg);
+}
+/* line 580, ../scss/molecules.scss */
+.C2H6Ob .H:nth-of-type(5) {
+  transform: translateZ(-1em) rotate(-34.4deg) translate(3.325em) rotateX(450deg) rotateY(-28.13deg) translateZ(-2.35em) rotateY(28.13deg) rotateX(-450deg) rotate(34.4deg);
+}
+/* line 573, ../scss/molecules.scss */
+.C2H6Ob .C:nth-of-type(2) {
+  transform: translateZ(-1em) rotate(34.4deg) translate(-3.325em) rotate(-34.4deg);
+}
+/* line 580, ../scss/molecules.scss */
+.C2H6Ob .H:nth-of-type(6) {
+  transform: translateZ(-1em) rotate(34.4deg) translate(-3.325em) rotateX(210deg) rotateY(28.13deg) translateZ(-2.35em) rotateY(-28.13deg) rotateX(-210deg) rotate(-34.4deg);
+}
+/* line 580, ../scss/molecules.scss */
+.C2H6Ob .H:nth-of-type(7) {
+  transform: translateZ(-1em) rotate(34.4deg) translate(-3.325em) rotateX(330deg) rotateY(28.13deg) translateZ(-2.35em) rotateY(-28.13deg) rotateX(-330deg) rotate(-34.4deg);
+}
+/* line 580, ../scss/molecules.scss */
+.C2H6Ob .H:nth-of-type(8) {
+  transform: translateZ(-1em) rotate(34.4deg) translate(-3.325em) rotateX(450deg) rotateY(28.13deg) translateZ(-2.35em) rotateY(-28.13deg) rotateX(-450deg) rotate(-34.4deg);
+}
+/* line 593, ../scss/molecules.scss */
+.C2H6Ob .O {
+  transform: translateZ(-1em);
+}
+
+/* line 597, ../scss/molecules.scss */
+.C2H6O2 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 606, ../scss/molecules.scss */
+.C2H6O2 .C:nth-of-type(1) {
+  transform: translate(-1.55em);
+}
+/* line 609, ../scss/molecules.scss */
+.C2H6O2 .O:nth-of-type(9) {
+  transform: translate(-1.55em) rotate(-70deg) translate(-3.325em) rotate(70deg);
+}
+/* line 615, ../scss/molecules.scss */
+.C2H6O2 .H:nth-of-type(8) {
+  transform: translate(-1.55em) rotate(-70deg) translate(-3.325em) rotate(75deg) translate(-2.575em) rotate(-5deg);
+}
+/* line 624, ../scss/molecules.scss */
+.C2H6O2 .H:nth-of-type(3) {
+  transform: translate(-1.55em) rotateX(30deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-30deg);
+}
+/* line 624, ../scss/molecules.scss */
+.C2H6O2 .H:nth-of-type(4) {
+  transform: translate(-1.55em) rotateX(150deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-150deg);
+}
+/* line 606, ../scss/molecules.scss */
+.C2H6O2 .C:nth-of-type(2) {
+  transform: translate(1.55em);
+}
+/* line 609, ../scss/molecules.scss */
+.C2H6O2 .O:nth-of-type(10) {
+  transform: translate(1.55em) rotate(-70deg) translate(3.325em) rotate(70deg);
+}
+/* line 615, ../scss/molecules.scss */
+.C2H6O2 .H:nth-of-type(7) {
+  transform: translate(1.55em) rotate(-70deg) translate(3.325em) rotate(75deg) translate(2.575em) rotate(-5deg);
+}
+/* line 624, ../scss/molecules.scss */
+.C2H6O2 .H:nth-of-type(5) {
+  transform: translate(1.55em) rotateX(210deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-210deg);
+}
+/* line 624, ../scss/molecules.scss */
+.C2H6O2 .H:nth-of-type(6) {
+  transform: translate(1.55em) rotateX(330deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-330deg);
+}
+
+/* line 635, ../scss/molecules.scss */
+.C2H3NO {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 643, ../scss/molecules.scss */
+.C2H3NO .C:nth-of-type(1) {
+  transform: translate(-1.55em);
+}
+/* line 646, ../scss/molecules.scss */
+.C2H3NO .H:nth-of-type(4) {
+  transform: translate(-1.55em) rotateY(-30deg) rotateX(28.13deg) translateZ(2.35em) rotateX(-28.13deg) rotateY(30deg);
+}
+/* line 643, ../scss/molecules.scss */
+.C2H3NO .C:nth-of-type(2) {
+  transform: translate(1.55em);
+}
+/* line 646, ../scss/molecules.scss */
+.C2H3NO .H:nth-of-type(5) {
+  transform: translate(-1.55em) rotateY(210deg) rotateX(28.13deg) translateZ(2.35em) rotateX(-28.13deg) rotateY(-210deg);
+}
+/* line 655, ../scss/molecules.scss */
+.C2H3NO .H:nth-of-type(3) {
+  transform: translate(-1.55em) rotate(110deg) translate(3.325em) rotate(-105deg) translate(-2.575em) rotate(-5deg);
+}
+/* line 660, ../scss/molecules.scss */
+.C2H3NO .O {
+  transform: translate(-1.55em) rotate(110deg) translate(3.325em) rotate(-110deg);
+}
+/* line 664, ../scss/molecules.scss */
+.C2H3NO .N {
+  transform: translate(4.675em);
+}
+
+/* line 668, ../scss/molecules.scss */
+.C2H3NOb {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 675, ../scss/molecules.scss */
+.C2H3NOb .C:first-of-type {
+  transform: translate(1.5625em);
+}
+/* line 678, ../scss/molecules.scss */
+.C2H3NOb .C:nth-of-type(2) {
+  transform: translate(-1.5625em) rotate(-120deg) translate(3.125em) rotate(120deg);
+}
+/* line 683, ../scss/molecules.scss */
+.C2H3NOb .H:nth-of-type(3) {
+  transform: translate(-1.5625em) rotate(-120deg) translate(3.125em) rotateX(120deg) rotate(-28.13deg) translateY(2.35em) rotate(28.13deg) rotateX(-120deg) rotate(120deg);
+}
+/* line 683, ../scss/molecules.scss */
+.C2H3NOb .H:nth-of-type(4) {
+  transform: translate(-1.5625em) rotate(-120deg) translate(3.125em) rotateX(240deg) rotate(-28.13deg) translateY(2.35em) rotate(28.13deg) rotateX(-240deg) rotate(120deg);
+}
+/* line 683, ../scss/molecules.scss */
+.C2H3NOb .H:nth-of-type(5) {
+  transform: translate(-1.5625em) rotate(-120deg) translate(3.125em) rotateX(360deg) rotate(-28.13deg) translateY(2.35em) rotate(28.13deg) rotateX(-360deg) rotate(120deg);
+}
+/* line 690, ../scss/molecules.scss */
+.C2H3NOb .N {
+  transform: translate(-1.5625em);
+}
+/* line 691, ../scss/molecules.scss */
+.C2H3NOb .O {
+  transform: translate(4.9125em);
+}
+
+/* line 699, ../scss/molecules.scss */
+.C3H6 .C:nth-of-type(1) {
+  transform: rotate(120deg) translateX(1.78979em) rotate(-120deg);
+}
+/* line 704, ../scss/molecules.scss */
+.C3H6 .H:nth-of-type(4) {
+  transform: rotate(120deg) translate(1.78979em) rotateY(-57.5deg) translate(2.35em) rotateY(57.5deg) rotate(-120deg);
+}
+/* line 704, ../scss/molecules.scss */
+.C3H6 .H:nth-of-type(5) {
+  transform: rotate(120deg) translate(1.78979em) rotateY(57.5deg) translate(2.35em) rotateY(-57.5deg) rotate(-120deg);
+}
+/* line 699, ../scss/molecules.scss */
+.C3H6 .C:nth-of-type(2) {
+  transform: rotate(240deg) translateX(1.78979em) rotate(-240deg);
+}
+/* line 704, ../scss/molecules.scss */
+.C3H6 .H:nth-of-type(6) {
+  transform: rotate(240deg) translate(1.78979em) rotateY(-57.5deg) translate(2.35em) rotateY(57.5deg) rotate(-240deg);
+}
+/* line 704, ../scss/molecules.scss */
+.C3H6 .H:nth-of-type(7) {
+  transform: rotate(240deg) translate(1.78979em) rotateY(57.5deg) translate(2.35em) rotateY(-57.5deg) rotate(-240deg);
+}
+/* line 699, ../scss/molecules.scss */
+.C3H6 .C:nth-of-type(3) {
+  transform: rotate(360deg) translateX(1.78979em) rotate(-360deg);
+}
+/* line 704, ../scss/molecules.scss */
+.C3H6 .H:nth-of-type(8) {
+  transform: rotate(360deg) translate(1.78979em) rotateY(-57.5deg) translate(2.35em) rotateY(57.5deg) rotate(-360deg);
+}
+/* line 704, ../scss/molecules.scss */
+.C3H6 .H:nth-of-type(9) {
+  transform: rotate(360deg) translate(1.78979em) rotateY(57.5deg) translate(2.35em) rotateY(-57.5deg) rotate(-360deg);
+}
+
+/* line 715, ../scss/molecules.scss */
+.C3H6b {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 723, ../scss/molecules.scss */
+.C3H6b .C:nth-of-type(1) {
+  transform: translate(-1.55em);
+}
+/* line 727, ../scss/molecules.scss */
+.C3H6b .H:nth-of-type(4) {
+  transform: translate(1.55em) rotate(-55.2deg) translate(3.1em) rotateX(30deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-30deg) rotate(55.2deg);
+}
+/* line 733, ../scss/molecules.scss */
+.C3H6b .H:nth-of-type(5) {
+  transform: translate(-1.55em) rotate(120deg) translate(2.35em) rotate(-120deg);
+}
+/* line 723, ../scss/molecules.scss */
+.C3H6b .C:nth-of-type(2) {
+  transform: translate(1.55em);
+}
+/* line 727, ../scss/molecules.scss */
+.C3H6b .H:nth-of-type(6) {
+  transform: translate(1.55em) rotate(-55.2deg) translate(3.1em) rotateX(150deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-150deg) rotate(55.2deg);
+}
+/* line 733, ../scss/molecules.scss */
+.C3H6b .H:nth-of-type(7) {
+  transform: translate(1.55em) rotate(60deg) translate(2.35em) rotate(-60deg);
+}
+/* line 727, ../scss/molecules.scss */
+.C3H6b .H:nth-of-type(8) {
+  transform: translate(1.55em) rotate(-55.2deg) translate(3.1em) rotateX(270deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-270deg) rotate(55.2deg);
+}
+/* line 733, ../scss/molecules.scss */
+.C3H6b .H:nth-of-type(9) {
+  transform: translate(-1.55em) rotate(-120deg) translate(2.35em) rotate(120deg);
+}
+/* line 740, ../scss/molecules.scss */
+.C3H6b .C:nth-of-type(3) {
+  transform: translate(1.55em) rotate(-55.2deg) translate(3.1em) rotate(55.2deg);
+}
+
+/* line 745, ../scss/molecules.scss */
+.C4H8 {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 755, ../scss/molecules.scss */
+.C4H8 .C:nth-of-type(1) {
+  transform: translate(-1.55em);
+}
+/* line 758, ../scss/molecules.scss */
+.C4H8 .C:nth-of-type(3) {
+  transform: translate(-1.55em) rotate(-125.4deg) translate(3.1em) rotate(125.4deg);
+}
+/* line 763, ../scss/molecules.scss */
+.C4H8 .H:nth-of-type(5) {
+  transform: translate(-1.55em) rotate(-125.4deg) translate(3.1em) rotate(-120deg) translate(-2.35em) rotate(120deg) rotate(125.4deg);
+}
+/* line 770, ../scss/molecules.scss */
+.C4H8 .H:nth-of-type(7) {
+  transform: translate(1.55em) rotate(33.95deg) rotateX(37.15deg) translateZ(2.35em) rotateX(-37.15deg) rotate(-33.95deg);
+}
+/* line 755, ../scss/molecules.scss */
+.C4H8 .C:nth-of-type(2) {
+  transform: translate(1.55em);
+}
+/* line 758, ../scss/molecules.scss */
+.C4H8 .C:nth-of-type(4) {
+  transform: translate(1.55em) rotate(-112.1deg) translate(-3.1em) rotate(112.1deg);
+}
+/* line 763, ../scss/molecules.scss */
+.C4H8 .H:nth-of-type(6) {
+  transform: translate(-1.55em) rotate(-125.4deg) translate(3.1em) rotate(120deg) translate(-2.35em) rotate(-120deg) rotate(125.4deg);
+}
+/* line 770, ../scss/molecules.scss */
+.C4H8 .H:nth-of-type(8) {
+  transform: translate(1.55em) rotate(33.95deg) rotateX(142.85deg) translateZ(2.35em) rotateX(-142.85deg) rotate(-33.95deg);
+}
+/* line 779, ../scss/molecules.scss */
+.C4H8 .H:nth-of-type(9) {
+  transform: translate(1.55em) rotate(-112.1deg) translate(-3.1em) rotateX(30deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-30deg) rotate(112.1deg);
+}
+/* line 779, ../scss/molecules.scss */
+.C4H8 .H:nth-of-type(10) {
+  transform: translate(1.55em) rotate(-112.1deg) translate(-3.1em) rotateX(150deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-150deg) rotate(112.1deg);
+}
+/* line 779, ../scss/molecules.scss */
+.C4H8 .H:nth-of-type(11) {
+  transform: translate(1.55em) rotate(-112.1deg) translate(-3.1em) rotateX(270deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-270deg) rotate(112.1deg);
+}
+/* line 787, ../scss/molecules.scss */
+.C4H8 .H:last-of-type {
+  transform: translate(-1.55em) rotate(117.1deg) translate(2.35em) rotate(-117.1deg);
+}
+
+/* line 792, ../scss/molecules.scss */
+.C4H8b {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 801, ../scss/molecules.scss */
+.C4H8b .C:nth-child(1) {
+  transform: translate(-1.55em);
+}
+/* line 804, ../scss/molecules.scss */
+.C4H8b .C:nth-child(3) {
+  transform: translate(-1.55em) rotate(-125.4deg) translate(3.1em) rotate(125.4deg);
+}
+/* line 810, ../scss/molecules.scss */
+.C4H8b .H:nth-last-of-type(1) {
+  transform: translate(-1.55em) rotate(120deg) translate(2.35em) rotate(-120deg);
+}
+/* line 817, ../scss/molecules.scss */
+.C4H8b .H:nth-of-type(5) {
+  transform: translate(-1.55em) rotate(-125.4deg) translate(3.1em) rotateX(210deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-210deg) rotate(125.4deg);
+}
+/* line 817, ../scss/molecules.scss */
+.C4H8b .H:nth-of-type(6) {
+  transform: translate(-1.55em) rotate(-125.4deg) translate(3.1em) rotateX(330deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-330deg) rotate(125.4deg);
+}
+/* line 817, ../scss/molecules.scss */
+.C4H8b .H:nth-of-type(7) {
+  transform: translate(-1.55em) rotate(-125.4deg) translate(3.1em) rotateX(450deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-450deg) rotate(125.4deg);
+}
+/* line 801, ../scss/molecules.scss */
+.C4H8b .C:nth-child(2) {
+  transform: translate(1.55em);
+}
+/* line 804, ../scss/molecules.scss */
+.C4H8b .C:nth-child(4) {
+  transform: translate(1.55em) rotate(125.4deg) translate(-3.1em) rotate(-125.4deg);
+}
+/* line 810, ../scss/molecules.scss */
+.C4H8b .H:nth-last-of-type(2) {
+  transform: translate(1.55em) rotate(-120deg) translate(-2.35em) rotate(120deg);
+}
+/* line 817, ../scss/molecules.scss */
+.C4H8b .H:nth-of-type(8) {
+  transform: translate(1.55em) rotate(125.4deg) translate(-3.1em) rotateX(210deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-210deg) rotate(-125.4deg);
+}
+/* line 817, ../scss/molecules.scss */
+.C4H8b .H:nth-of-type(9) {
+  transform: translate(1.55em) rotate(125.4deg) translate(-3.1em) rotateX(330deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-330deg) rotate(-125.4deg);
+}
+/* line 817, ../scss/molecules.scss */
+.C4H8b .H:nth-of-type(10) {
+  transform: translate(1.55em) rotate(125.4deg) translate(-3.1em) rotateX(450deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-450deg) rotate(-125.4deg);
+}
+
+/* line 829, ../scss/molecules.scss */
+.C4H8c {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 838, ../scss/molecules.scss */
+.C4H8c .C:nth-child(1) {
+  transform: translate(-1.55em);
+}
+/* line 841, ../scss/molecules.scss */
+.C4H8c .C:nth-child(3) {
+  transform: translate(-1.55em) rotate(-123.8deg) translate(3.1em) rotate(123.8deg);
+}
+/* line 847, ../scss/molecules.scss */
+.C4H8c .H:nth-last-of-type(1) {
+  transform: translate(-1.55em) rotate(120deg) translate(2.35em) rotate(-120deg);
+}
+/* line 854, ../scss/molecules.scss */
+.C4H8c .H:nth-of-type(5) {
+  transform: translate(-1.55em) rotate(-123.8deg) translate(3.1em) rotateX(210deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-210deg) rotate(123.8deg);
+}
+/* line 854, ../scss/molecules.scss */
+.C4H8c .H:nth-of-type(6) {
+  transform: translate(-1.55em) rotate(-123.8deg) translate(3.1em) rotateX(330deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-330deg) rotate(123.8deg);
+}
+/* line 854, ../scss/molecules.scss */
+.C4H8c .H:nth-of-type(7) {
+  transform: translate(-1.55em) rotate(-123.8deg) translate(3.1em) rotateX(450deg) rotateY(28.13deg) translateZ(2.35em) rotateY(-28.13deg) rotateX(-450deg) rotate(123.8deg);
+}
+/* line 838, ../scss/molecules.scss */
+.C4H8c .C:nth-child(2) {
+  transform: translate(1.55em);
+}
+/* line 841, ../scss/molecules.scss */
+.C4H8c .C:nth-child(4) {
+  transform: translate(1.55em) rotate(-123.8deg) translate(-3.1em) rotate(123.8deg);
+}
+/* line 847, ../scss/molecules.scss */
+.C4H8c .H:nth-last-of-type(2) {
+  transform: translate(1.55em) rotate(120deg) translate(-2.35em) rotate(-120deg);
+}
+/* line 854, ../scss/molecules.scss */
+.C4H8c .H:nth-of-type(8) {
+  transform: translate(1.55em) rotate(-123.8deg) translate(-3.1em) rotateX(30deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-30deg) rotate(123.8deg);
+}
+/* line 854, ../scss/molecules.scss */
+.C4H8c .H:nth-of-type(9) {
+  transform: translate(1.55em) rotate(-123.8deg) translate(-3.1em) rotateX(150deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-150deg) rotate(123.8deg);
+}
+/* line 854, ../scss/molecules.scss */
+.C4H8c .H:nth-of-type(10) {
+  transform: translate(1.55em) rotate(-123.8deg) translate(-3.1em) rotateX(270deg) rotateY(-28.13deg) translateZ(2.35em) rotateY(28.13deg) rotateX(-270deg) rotate(123.8deg);
+}
+
+/* line 868, ../scss/molecules.scss */
+.C4H8d {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 877, ../scss/molecules.scss */
+.C4H8d .C:nth-child(1) {
+  transform: translate(-1.55em);
+}
+/* line 880, ../scss/molecules.scss */
+.C4H8d .C:nth-child(3) {
+  transform: translate(1.55em) rotate(37.5deg) translateY(-3.1em) rotate(-37.5deg);
+}
+/* line 886, ../scss/molecules.scss */
+.C4H8d .H:nth-last-of-type(1) {
+  transform: translate(-1.55em) rotate(30.75deg) translateY(2.35em) rotate(-30.75deg);
+}
+/* line 893, ../scss/molecules.scss */
+.C4H8d .H:nth-of-type(5) {
+  transform: translate(1.55em) rotate(37.5deg) translateY(-3.1em) rotateY(210deg) rotateX(28.13deg) translateZ(2.35em) rotateX(-28.13deg) rotateY(-210deg) rotate(-37.5deg);
+}
+/* line 893, ../scss/molecules.scss */
+.C4H8d .H:nth-of-type(6) {
+  transform: translate(1.55em) rotate(37.5deg) translateY(-3.1em) rotateY(330deg) rotateX(28.13deg) translateZ(2.35em) rotateX(-28.13deg) rotateY(-330deg) rotate(-37.5deg);
+}
+/* line 893, ../scss/molecules.scss */
+.C4H8d .H:nth-of-type(7) {
+  transform: translate(1.55em) rotate(37.5deg) translateY(-3.1em) rotateY(450deg) rotateX(28.13deg) translateZ(2.35em) rotateX(-28.13deg) rotateY(-450deg) rotate(-37.5deg);
+}
+/* line 877, ../scss/molecules.scss */
+.C4H8d .C:nth-child(2) {
+  transform: translate(1.55em);
+}
+/* line 880, ../scss/molecules.scss */
+.C4H8d .C:nth-child(4) {
+  transform: translate(1.55em) rotate(-37.5deg) translateY(3.1em) rotate(37.5deg);
+}
+/* line 886, ../scss/molecules.scss */
+.C4H8d .H:nth-last-of-type(2) {
+  transform: translate(-1.55em) rotate(-30.75deg) translateY(-2.35em) rotate(30.75deg);
+}
+/* line 893, ../scss/molecules.scss */
+.C4H8d .H:nth-of-type(8) {
+  transform: translate(1.55em) rotate(-37.5deg) translateY(3.1em) rotateY(210deg) rotateX(-28.13deg) translateZ(2.35em) rotateX(28.13deg) rotateY(-210deg) rotate(37.5deg);
+}
+/* line 893, ../scss/molecules.scss */
+.C4H8d .H:nth-of-type(9) {
+  transform: translate(1.55em) rotate(-37.5deg) translateY(3.1em) rotateY(330deg) rotateX(-28.13deg) translateZ(2.35em) rotateX(28.13deg) rotateY(-330deg) rotate(37.5deg);
+}
+/* line 893, ../scss/molecules.scss */
+.C4H8d .H:nth-of-type(10) {
+  transform: translate(1.55em) rotate(-37.5deg) translateY(3.1em) rotateY(450deg) rotateX(-28.13deg) translateZ(2.35em) rotateX(28.13deg) rotateY(-450deg) rotate(37.5deg);
+}
+
+/* line 912, ../scss/molecules.scss */
+.C6H6 .C:nth-of-type(1) {
+  transform: rotate(60deg) translateX(3.1em) rotate(-60deg);
+}
+/* line 916, ../scss/molecules.scss */
+.C6H6 .H:nth-of-type(7) {
+  transform: rotate(60deg) translateX(5.45em) rotate(-60deg);
+}
+/* line 912, ../scss/molecules.scss */
+.C6H6 .C:nth-of-type(2) {
+  transform: rotate(120deg) translateX(3.1em) rotate(-120deg);
+}
+/* line 916, ../scss/molecules.scss */
+.C6H6 .H:nth-of-type(8) {
+  transform: rotate(120deg) translateX(5.45em) rotate(-120deg);
+}
+/* line 912, ../scss/molecules.scss */
+.C6H6 .C:nth-of-type(3) {
+  transform: rotate(180deg) translateX(3.1em) rotate(-180deg);
+}
+/* line 916, ../scss/molecules.scss */
+.C6H6 .H:nth-of-type(9) {
+  transform: rotate(180deg) translateX(5.45em) rotate(-180deg);
+}
+/* line 912, ../scss/molecules.scss */
+.C6H6 .C:nth-of-type(4) {
+  transform: rotate(240deg) translateX(3.1em) rotate(-240deg);
+}
+/* line 916, ../scss/molecules.scss */
+.C6H6 .H:nth-of-type(10) {
+  transform: rotate(240deg) translateX(5.45em) rotate(-240deg);
+}
+/* line 912, ../scss/molecules.scss */
+.C6H6 .C:nth-of-type(5) {
+  transform: rotate(300deg) translateX(3.1em) rotate(-300deg);
+}
+/* line 916, ../scss/molecules.scss */
+.C6H6 .H:nth-of-type(11) {
+  transform: rotate(300deg) translateX(5.45em) rotate(-300deg);
+}
+/* line 912, ../scss/molecules.scss */
+.C6H6 .C:nth-of-type(6) {
+  transform: rotate(360deg) translateX(3.1em) rotate(-360deg);
+}
+/* line 916, ../scss/molecules.scss */
+.C6H6 .H:nth-of-type(12) {
+  transform: rotate(360deg) translateX(5.45em) rotate(-360deg);
+}
+
+/* line 928, ../scss/molecules.scss */
+.C6H12 .C:nth-of-type(1) {
+  transform: rotate(60deg) translate(3.1em) rotate(-60deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(7) {
+  transform: rotate(60deg) translate(3.1em) rotateY(30deg) translateZ(2.35em) rotateY(-30deg) rotate(-60deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(8) {
+  transform: rotate(60deg) translate(3.1em) rotateY(150deg) translateZ(2.35em) rotateY(-150deg) rotate(-60deg);
+}
+/* line 928, ../scss/molecules.scss */
+.C6H12 .C:nth-of-type(2) {
+  transform: rotate(120deg) translate(3.1em) rotate(-120deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(9) {
+  transform: rotate(120deg) translate(3.1em) rotateY(30deg) translateZ(2.35em) rotateY(-30deg) rotate(-120deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(10) {
+  transform: rotate(120deg) translate(3.1em) rotateY(150deg) translateZ(2.35em) rotateY(-150deg) rotate(-120deg);
+}
+/* line 928, ../scss/molecules.scss */
+.C6H12 .C:nth-of-type(3) {
+  transform: rotate(180deg) translate(3.1em) rotate(-180deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(11) {
+  transform: rotate(180deg) translate(3.1em) rotateY(30deg) translateZ(2.35em) rotateY(-30deg) rotate(-180deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(12) {
+  transform: rotate(180deg) translate(3.1em) rotateY(150deg) translateZ(2.35em) rotateY(-150deg) rotate(-180deg);
+}
+/* line 928, ../scss/molecules.scss */
+.C6H12 .C:nth-of-type(4) {
+  transform: rotate(240deg) translate(3.1em) rotate(-240deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(13) {
+  transform: rotate(240deg) translate(3.1em) rotateY(30deg) translateZ(2.35em) rotateY(-30deg) rotate(-240deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(14) {
+  transform: rotate(240deg) translate(3.1em) rotateY(150deg) translateZ(2.35em) rotateY(-150deg) rotate(-240deg);
+}
+/* line 928, ../scss/molecules.scss */
+.C6H12 .C:nth-of-type(5) {
+  transform: rotate(300deg) translate(3.1em) rotate(-300deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(15) {
+  transform: rotate(300deg) translate(3.1em) rotateY(30deg) translateZ(2.35em) rotateY(-30deg) rotate(-300deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(16) {
+  transform: rotate(300deg) translate(3.1em) rotateY(150deg) translateZ(2.35em) rotateY(-150deg) rotate(-300deg);
+}
+/* line 928, ../scss/molecules.scss */
+.C6H12 .C:nth-of-type(6) {
+  transform: rotate(360deg) translate(3.1em) rotate(-360deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(17) {
+  transform: rotate(360deg) translate(3.1em) rotateY(30deg) translateZ(2.35em) rotateY(-30deg) rotate(-360deg);
+}
+/* line 933, ../scss/molecules.scss */
+.C6H12 .H:nth-of-type(18) {
+  transform: rotate(360deg) translate(3.1em) rotateY(150deg) translateZ(2.35em) rotateY(-150deg) rotate(-360deg);
+}
+
+/* line 943, ../scss/molecules.scss */
+.C6H12b {
+  /* 28.13deg = asin(sin(109.5deg/2)/sqrt(3)) */
+}
+/* line 952, ../scss/molecules.scss */
+.C6H12b .C:nth-of-type(1) {
+  transform: rotate(72deg) translate(2.63702em) rotate(-72deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(7) {
+  transform: rotate(72deg) translate(2.63702em) rotateY(-120deg) translate(-2.35em) rotateY(120deg) rotate(-72deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(8) {
+  transform: rotate(72deg) translate(2.63702em) rotateY(120deg) translate(-2.35em) rotateY(-120deg) rotate(-72deg);
+}
+/* line 952, ../scss/molecules.scss */
+.C6H12b .C:nth-of-type(2) {
+  transform: rotate(144deg) translate(2.63702em) rotate(-144deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(9) {
+  transform: rotate(144deg) translate(2.63702em) rotateY(-120deg) translate(-2.35em) rotateY(120deg) rotate(-144deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(10) {
+  transform: rotate(144deg) translate(2.63702em) rotateY(120deg) translate(-2.35em) rotateY(-120deg) rotate(-144deg);
+}
+/* line 952, ../scss/molecules.scss */
+.C6H12b .C:nth-of-type(3) {
+  transform: rotate(216deg) translate(2.63702em) rotate(-216deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(11) {
+  transform: rotate(216deg) translate(2.63702em) rotateY(-120deg) translate(-2.35em) rotateY(120deg) rotate(-216deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(12) {
+  transform: rotate(216deg) translate(2.63702em) rotateY(120deg) translate(-2.35em) rotateY(-120deg) rotate(-216deg);
+}
+/* line 952, ../scss/molecules.scss */
+.C6H12b .C:nth-of-type(4) {
+  transform: rotate(288deg) translate(2.63702em) rotate(-288deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(13) {
+  transform: rotate(288deg) translate(2.63702em) rotateY(-120deg) translate(-2.35em) rotateY(120deg) rotate(-288deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(14) {
+  transform: rotate(288deg) translate(2.63702em) rotateY(120deg) translate(-2.35em) rotateY(-120deg) rotate(-288deg);
+}
+/* line 952, ../scss/molecules.scss */
+.C6H12b .C:nth-of-type(5) {
+  transform: rotate(360deg) translate(2.63702em) rotate(-360deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(15) {
+  transform: rotate(360deg) translate(2.63702em) rotateY(-120deg) translate(-2.35em) rotateY(120deg) rotate(-360deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(16) {
+  transform: rotate(360deg) translate(2.63702em) rotateY(120deg) translate(-2.35em) rotateY(-120deg) rotate(-360deg);
+}
+/* line 952, ../scss/molecules.scss */
+.C6H12b .C:nth-of-type(6) {
+  transform: rotate(432deg) translate(2.63702em) rotate(-432deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(17) {
+  transform: rotate(432deg) translate(2.63702em) rotateY(-120deg) translate(-2.35em) rotateY(120deg) rotate(-432deg);
+}
+/* line 957, ../scss/molecules.scss */
+.C6H12b .H:nth-of-type(18) {
+  transform: rotate(432deg) translate(2.63702em) rotateY(120deg) translate(-2.35em) rotateY(-120deg) rotate(-432deg);
+}
+/* line 966, ../scss/molecules.scss */
+.C6H12b .C:nth-of-type(6) {
+  transform: translate(2.63702em) rotateY(120deg) translate(-3.1em) rotateY(-120deg);
+}
+/* line 971, ../scss/molecules.scss */
+.C6H12b .H:nth-last-of-type(1) {
+  transform: translate(2.63702em) rotateY(120deg) translate(-3.1em) rotateX(120deg) rotateY(28.13deg) translateZ(-2.35em) rotateY(-28.13deg) rotateX(-120deg) rotateY(-120deg);
+}
+/* line 971, ../scss/molecules.scss */
+.C6H12b .H:nth-last-of-type(2) {
+  transform: translate(2.63702em) rotateY(120deg) translate(-3.1em) rotateX(240deg) rotateY(28.13deg) translateZ(-2.35em) rotateY(-28.13deg) rotateX(-240deg) rotateY(-120deg);
+}
+/* line 971, ../scss/molecules.scss */
+.C6H12b .H:nth-last-of-type(3) {
+  transform: translate(2.63702em) rotateY(120deg) translate(-3.1em) rotateX(360deg) rotateY(28.13deg) translateZ(-2.35em) rotateY(-28.13deg) rotateX(-360deg) rotateY(-120deg);
+}

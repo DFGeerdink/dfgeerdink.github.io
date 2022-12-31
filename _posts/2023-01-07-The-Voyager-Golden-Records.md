@@ -2,7 +2,7 @@
 layout: post
 title: "The Voyager Golden Records"
 date: 2022-12-25 10:00:00
-image: 'https://farm8.staticflickr.com/7811/32758672418_8ceef8e19f_z.jpg'
+image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Pioneer_plaque.svg/1280px-Pioneer_plaque.svg.png'
 description: The Voyager Golden Records.
 category: 'technology'
 tags:

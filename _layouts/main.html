@@ -16,7 +16,7 @@ layout: compress
                     <h2>This website exhibits some of my creative projects, have a look around!</h2>
                 </section>
                 <section class="blogposts">
-                    <h1>Latest additions to my portfolio:</h1>
+                    <h1>Latest additions:</h1>
                     <main class="home" id="post" role="main" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
                         <div id="grid" class="row flex-grid">
                         {% for post in site.posts limit:4 %}
@@ -31,7 +31,7 @@ layout: compress
                                         <div class="cover">
                                             {% include new-post-tag.html date=post.date %}
                                             <a href="{{ post.url | prepend: site.baseurl }}" {%if isnewpost %}class="new-post"{% endif %}>
-                                                <img src="assets/img/placeholder.png" data-url="{{ post.image }}" class="preload">
+                                                <img src="/assets/img/placeholder.png" data-url="{{ post.image }}" class="preload">
                                             </a>
                                         </div>
                                     {% endif %}

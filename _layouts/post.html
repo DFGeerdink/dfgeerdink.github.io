@@ -2,7 +2,6 @@
 <html lang="en" itemscope itemtype="http://schema.org/BlogPosting">
     {% include head.html %}
     <body class="has-push-menu">
-        {% include minutes-to-read.html %}
         {% include svg-icons.html %}
         {% include header.html %}
         
@@ -10,10 +9,6 @@
             <section class="banner">
                 {% include banner.html banner=page.banner title=page.banner-title desc1=page.banner-desc1 desc2=page.banner-desc2 desc3=page.banner-desc3 desc4=page.banner-desc4 %}
             </section>
-        {% endif %}
-
-        {% if page.map %}
-            {% include map.html kml=page.map %}
         {% endif %}
 
         <section class="post">
@@ -25,31 +20,16 @@
                             {% include date.html date=page.date %}
                         </time>
                     {% endif %}
-                    <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
-                    <span>{{ minutesText }}</span>
                 </p>
                 <h1 class="post-title" itemprop="name">{{ page.title }}</h1>
                 <p itemprop="description" class="subtitle">{{ page.description }}</p>
                 
-                {% if page.gallery %}
-                    {% include nanogallery.html gallery=page.gallery %}
-                {% else %}
-                    {% if page.image %}
-                        <img src="{{ page.image }}" alt="Post Image" class="post-cover">
-                    {% endif %}
+                {% if page.image %}
+                    <img src="{{ page.image }}" alt="Post Image" class="post-cover">
                 {% endif %}
 
                 {{ content }}
             </article>
-
-<!--            <div class="progress-bar" data-minutes="{{ totalMinutes }}">-->
-<!--                <span class="time-completed"></span>-->
-<!--                <span class="time-remaining"></span>-->
-<!--                <div class="bar">-->
-<!--                    <span class="completed" style="width:0%;"></span>-->
-<!--                    <span class="remaining" style="width:100%;"></span>-->
-<!--                </div>-->
-<!--            </div>-->
 
             {% include author.html %}
             {% include footer.html %}

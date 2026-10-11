@@ -4,7 +4,6 @@ email: daangeerdink@live.nl
 description: Portfolio and personal website.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://daangeerdink.nl" # the base hostname & protocol for your site
-google_analytics: "UA-126427192-1"
 
 # User Settings
 username: Daan Geerdink
@@ -37,10 +36,8 @@ links:
 # Banner
 banner: bannermain.mp4
 banner-title: "Curiosity"
-banner-desc1: "Exploring: Videography"
-banner-desc2: "Exploring: Travel"
-banner-desc3: "Exploring: Programming"
-banner-desc4: "Exploring: Technology"
+banner-desc1: "Exploring: Programming"
+banner-desc2: "Exploring: Technology"
 
 # Exclude my node related stuff
-exclude: ['package.json', 'src', 'node_modules']
+exclude: ['package.json', 'package-lock.json', 'gulpfile.js', 'config.rb', 'initpost.sh', 'initdraft.sh', 'README.md', 'src', 'node_modules', 'scripts']

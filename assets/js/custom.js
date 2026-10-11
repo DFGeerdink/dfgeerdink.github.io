@@ -21,9 +21,3 @@ $(document).ready(function(){
   });
 });
 
-// Hide nanogallery watermark
-$(document).ready(function(){
-  $(function(){
-  	$('.nGY2PortInfo').hide();
-  });
-});

@@ -1,12 +1,19 @@
-<section id="banner" data-vide-bg="{{site.baseurl}}/assets/video/{{include.banner}}" data-vide-options="posterType: jpg, loop: true, muted: true, position: 50% 50%">
+{% assign banner_poster = include.banner | replace: '.mp4', '.jpg' | prepend: '/assets/video/' | prepend: site.baseurl %}
+<section id="banner">
+  <!-- muted + playsinline let every browser, including iOS Safari, autoplay the background video -->
+  <div class="banner-video" aria-hidden="true" style="background-image: url('{{ banner_poster }}')">
+    <video autoplay muted loop playsinline poster="{{ banner_poster }}">
+      <source src="{{site.baseurl}}/assets/video/{{include.banner}}" type="video/mp4">
+    </video>
+  </div>
   <div class="wrapper">
     <div class="content">
       <h1 class="title">{{ include.title }}</h1>
       <div class="slideshow">
-      	<h2 class="sub_title">{{ include.desc1 }}</h2>
-      	<h2 class="sub_title">{{ include.desc2 }}</h2>
-      	<h2 class="sub_title">{{ include.desc3 }}</h2>
-      	<h2 class="sub_title">{{ include.desc4 }}</h2>
+      	{% if include.desc1 %}<h2 class="sub_title">{{ include.desc1 }}</h2>{% endif %}
+      	{% if include.desc2 %}<h2 class="sub_title">{{ include.desc2 }}</h2>{% endif %}
+      	{% if include.desc3 %}<h2 class="sub_title">{{ include.desc3 }}</h2>{% endif %}
+      	{% if include.desc4 %}<h2 class="sub_title">{{ include.desc4 }}</h2>{% endif %}
       </div>
     </div>
   </div>

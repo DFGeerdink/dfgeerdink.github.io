@@ -1562,6 +1562,24 @@ footer ul a:hover {
 
 #banner {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Background video, cropped to cover the banner; the poster shows until it plays */
+#banner .banner-video {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+#banner .banner-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 #banner .content {
@@ -1590,12 +1608,6 @@ footer ul a:hover {
   height: 0;
   line-height: 0;
   margin: auto;
-}
-
-/* Daan Gallery */
-#my_nanogallery {
-    background-color: #141414;
-    padding: 75px 50px 75px 50px;
 }
 
 .categoryintro {
@@ -1652,25 +1664,6 @@ footer ul a:hover {
 	max-width: 70%;
 }
 
-/*GMAP3 API*/
-.map {
-    display: block;
-    width: 100%;
-    height: 450px;
-}
-
-.gmnoprint {
-  visibility: hidden;
-}
-
-.gm-style-cc {
-  visibility: hidden;
-}
-
-body > main > article > div.map > div > div > div:nth-child(3) {
-  visibility: hidden;
-}
-
 div.gr-backdrop {
     width: 100%;
     background-color: rgb(32, 35, 48);
@@ -1678,28 +1671,344 @@ div.gr-backdrop {
     padding-bottom: 100px;
 }
 
-#H2states-explainer {
-    width: 70vw;
-    position: relative;
-    left: calc(-50vw + 65%);
-    white-space: pre-line;
+/* Plaque explainer: one full-screen step per plaque element, started by anim.js when scrolled into view */
+
+:root {
+    --plaque-gold: #e0b794;
+    --explainer-header: 62px;       /* fixed .bar-header */
+    --minimap-width: min(200px, 26vw);
+}
+
+/* Soft snapping: scrolling settles on a step when it stops nearby, and moves freely in between */
+html.has-explainer {
+    scroll-snap-type: y proximity;
+    scroll-padding-top: var(--explainer-header);
+}
+
+div.gr-backdrop.explainer {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 0;
+}
+
+.explainer-step {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-areas: "copy diagram";
+    align-items: center;
+    column-gap: 4vw;
+    height: calc(100vh - var(--explainer-header));
+    height: calc(100svh - var(--explainer-header));
+    padding: 4vh 5vw;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    scroll-snap-align: start;
+}
+
+/* Leave room at the bottom of the text column for the minimap */
+.explainer-copy {
+    grid-area: copy;
+    padding-bottom: calc(var(--minimap-width) * 0.8 + 3vh);
     font-family: 'Montserrat', sans-serif;
-    font-size: 20pt;
+    font-size: clamp(15px, 0.75vw + 0.85vh, 24px);
+    line-height: 1.45;
     color: white;
-    padding-top: 100px;
-    padding-bottom: 100px;
 }
 
-#H2states {
-    width: 70vw;
-    position: relative;
-    left: calc(-50vw + 65%);
+.explainer-heading {
+    margin-bottom: 1em;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--plaque-gold);
+}
+
+.explainer-index {
+    margin-right: 0.8em;
+    padding-right: 0.8em;
+    border-right: 1px solid rgba(224, 183, 148, 0.5);
+}
+
+/* The invisible final text and the typed text share one grid cell,
+   so the box has its final height before typing starts */
+.explainer-text {
+    display: grid;
+}
+
+.explainer-text-final,
+.explainer-text-typed {
+    grid-area: 1 / 1;
+}
+
+.explainer-text-final {
+    visibility: hidden;
+}
+
+/* Reserve room for the typewriter cursor */
+.explainer-text-final::after {
+    content: '.';
+}
+
+.explainer-text-typed {
+    white-space: pre-line;
+}
+
+/* Cue to move on, shown once the step has finished typing */
+.explainer-next {
+    margin-top: 1.5em;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 0.7em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--plaque-gold);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease;
+}
+
+.explainer-next::after {
+    content: '';
+    display: inline-block;
+    width: 0.6em;
+    height: 0.6em;
+    margin-left: 0.8em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-0.2em) rotate(45deg);
+}
+
+.is-done .explainer-next {
+    opacity: 1;
+    visibility: visible;
+    animation: explainer-nudge 1.6s ease-in-out infinite;
+}
+
+@keyframes explainer-nudge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(0.3em); }
+}
+
+.plaque-part {
+    grid-area: diagram;
+    display: block;
+    align-self: stretch;
+    width: 100%;
+    height: 100%;
     background-color: transparent;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-#H2states-diagram {
-    padding-top: 0px;
-    padding-bottom: 0px;
+.plaque-part .plaque-context {
+    fill: none;
+    stroke: white;
+    opacity: 0.2;
+}
+
+/* Line drawing: strokes carry pathLength="1", so dash values are always 1 and never need measuring */
+.plaque-part .plaque-stroke {
+    fill: transparent;
+    stroke: white;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
+
+.is-drawing .plaque-part {
+    animation: anim-glow 3s ease-in-out infinite;
+}
+
+.is-drawing .plaque-part .plaque-stroke {
+    animation: line-anim var(--dur, 0.5s) ease forwards var(--d);
+}
+
+.is-drawing .plaque-part .svg-anim-fill {
+    animation: line-anim var(--dur, 0.5s) ease forwards var(--d), fill 0.5s ease forwards calc(var(--d) + var(--dur, 0.5s));
+}
+
+/* Pioneer 10: outlines draw first, then the original fills fade in as faint shading (--fill, --fo per path) */
+.plaque-part.plaque-craft .plaque-stroke {
+    fill: var(--fill, none);
+    fill-opacity: 0;
+}
+
+.is-drawing .plaque-part.plaque-craft .plaque-stroke {
+    animation: line-anim 0.5s ease forwards var(--d), craft-fill 1.5s ease forwards var(--fill-delay);
+}
+
+@keyframes craft-fill {
+    to {
+        fill-opacity: var(--fo, 0);
+    }
+}
+
+/* Physical properties of the plaque, revealed row by row while the craft is drawn */
+.explainer-specs {
+    margin: 1.5em 0 0;
+    font-size: 0.78em;
+}
+
+.explainer-specs > div {
+    display: grid;
+    grid-template-columns: 9em minmax(0, 1fr);
+    column-gap: 1em;
+    padding: 0.45em 0;
+    border-top: 1px solid rgba(224, 183, 148, 0.25);
+    opacity: 0;
+}
+
+.is-drawing .explainer-specs > div {
+    animation: spec-in 0.6s ease forwards calc(var(--i) * 0.4s + 0.3s);
+}
+
+@keyframes spec-in {
+    from { opacity: 0; transform: translateY(0.4em); }
+    to { opacity: 1; transform: none; }
+}
+
+.explainer-specs dt {
+    font-size: 0.85em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--plaque-gold);
+}
+
+.explainer-specs dd {
+    margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .plaque-part .plaque-stroke {
+        stroke-dashoffset: 0;
+        animation: none !important;
+    }
+
+    .plaque-part.plaque-craft .plaque-stroke {
+        fill-opacity: var(--fo, 0);
+    }
+
+    .explainer-specs > div {
+        opacity: 1;
+        animation: none !important;
+    }
+
+    .plaque-part .svg-anim-fill {
+        fill: white;
+    }
+
+    .is-done .explainer-next {
+        animation: none;
+    }
+}
+
+/* Ghost plaque that follows the reader, highlights the current part and jumps to a part on click */
+.plaque-minimap {
+    position: fixed;
+    left: 5vw;
+    bottom: 3vh;
+    z-index: 10;
+    width: var(--minimap-width);
+    padding: 10px 10px 8px;
+    border: 1px solid rgba(224, 183, 148, 0.45);
+    border-radius: 8px;
+    background-color: rgb(46, 50, 68);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+.plaque-minimap.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Capped height keeps tall covers inside the space reserved by .explainer-copy */
+.plaque-minimap-svg {
+    display: block;
+    width: 100%;
+    max-height: calc(var(--minimap-width) * 0.75);
+    cursor: pointer;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.plaque-minimap g[data-part] {
+    fill: none;
+    stroke: white;
+    opacity: 0.35;
+    transition: opacity 0.4s ease, stroke 0.4s ease;
+}
+
+.plaque-minimap g[data-part]:hover {
+    opacity: 0.7;
+}
+
+.plaque-minimap g.is-active {
+    stroke: var(--plaque-gold);
+    opacity: 1;
+    filter: drop-shadow(0 0 25px rgba(224, 183, 148, 0.9));
+}
+
+.plaque-minimap-label {
+    margin-top: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Portrait screens: text above the diagram, minimap in the bottom-right corner */
+@media (max-aspect-ratio: 1/1) {
+    :root {
+        --minimap-width: min(140px, 32vw);
+    }
+
+    .explainer-step {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr);
+        grid-template-areas: "copy" "diagram";
+        row-gap: 2vh;
+        padding: 3vh 5vw calc(var(--minimap-width) * 0.8 + 4vh);
+    }
+
+    .explainer-copy {
+        padding-bottom: 0;
+        font-size: clamp(14px, 1.6vh + 0.4vw, 22px);
+    }
+
+    .explainer-next {
+        margin-top: 0.8em;
+    }
+
+    .explainer-specs {
+        margin-top: 1em;
+        font-size: 0.68em;
+    }
+
+    .explainer-specs > div {
+        grid-template-columns: 7.5em minmax(0, 1fr);
+        padding: 0.3em 0;
+    }
+
+    .plaque-minimap {
+        left: auto;
+        right: 5vw;
+        bottom: 2vh;
+        padding: 6px 6px 4px;
+    }
+
+    .plaque-minimap-label {
+        font-size: 9px;
+    }
 }
 
 @keyframes line-anim {

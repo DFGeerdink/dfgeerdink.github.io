@@ -32,6 +32,8 @@ links:
     url: /about/
   - title: Blog Categories
     url: /category/
+  - title: Terminal
+    url: /terminal/
 
 # Banner
 banner: bannermain.mp4

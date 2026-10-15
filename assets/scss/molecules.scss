@@ -1,3 +1,12 @@
+/*
+ * Pure CSS 3D molecules.
+ *
+ * Based on "Pure CSS Animated 3D Molecules (alpha)" by Ana Tudor:
+ * https://codepen.io/thebabydino/pen/DzzjNd
+ *
+ * Compiled with Compass (see config.rb); pow(), sqrt(), cos() and pi()
+ * are Compass functions.
+ */
 @import 'compass/css3';
 
 
@@ -7,6 +16,8 @@ $ap: ('O' 3.55 #193987) /* oxygen */
      ('N' 3.15 #05ca09) /* nitrogen */
      ('Cl' 3.7 #ba31fb) /* chlorine */;
 $rCC: (1em)*nth(nth($ap,3),2);
+$rHH: (1em)*nth(nth($ap,2),2);
+$rOO: (1em)*nth(nth($ap,1),2);
 $rCH: (.5em)*(nth(nth($ap,3),2) + nth(nth($ap,2),2));
 $rCO: (.5em)*(nth(nth($ap,3),2) + nth(nth($ap,1),2));
 $rNO: (.5em)*(nth(nth($ap,4),2) + nth(nth($ap,1),2));
@@ -14,21 +25,25 @@ $rOH: (.5em)*(nth(nth($ap,1),2) + nth(nth($ap,2),2));
 $rNH: (.5em)*(nth(nth($ap,4),2) + nth(nth($ap,2),2));
 $rCN: (.5em)*(nth(nth($ap,3),2) + nth(nth($ap,4),2));
 $rCCl: (.5em)*(nth(nth($ap,3),2) + nth(nth($ap,5),2));
-html {
+/*
+ * Page styles for the Molecules page only (the page with the .set lists);
+ * this stylesheet is also loaded on the Terminal page.
+ */
+html:has(ul.set) {
   background: black;
   font: 100% Arial Narrow, sans-serif;
 }
-body { margin: 0; color: #7D7DB0; }
+html:has(ul.set) body { margin: 0; color: #7D7DB0; }
 .set > * {
   display: inline-block;
   vertical-align: middle;
 }
-ul {
+.set, .molecule {
   padding: 0;
   list-style: none;
-  li {
-    margin: 2em;
-  }
+}
+.set li {
+  margin: 2em;
 }
 .atom {
   border-radius: 50%;
@@ -73,7 +88,6 @@ ul {
   min-width: 10em; min-height: 10em;
   position: relative;
   transform-style: preserve-3d;
-  animation: transl 4s linear infinite;
   animation: rot 4s linear infinite;
   animation-play-state: running;
   pointer-events: none;
@@ -91,12 +105,6 @@ ul {
     animation-play-state: running;
   }
 }
-@keyframes transl {
-  to {
-    transform: translate(3em,0);
-  }
-}
-
 @keyframes rot {
   to {
     transform: rotate(360deg)
@@ -109,15 +117,11 @@ ul {
       rotate(-360deg);
   }
 }
-.H2 {
-  $aHOH: 104.45deg;
-  $noH: 1;
-  .O { transform: translateZ(-1em); }
-  @for $i from 1 through $noH {
-    $mya: pow(-1,$i)*$aHOH/2;
+.H2 { /* linear molecule */
+  @for $i from 1 through 2 {
     .H:nth-of-type(#{$i}) {
-      transform: translateZ(-1em) rotateY($mya)
-        translateZ($rOH) rotateY(-$mya);
+      transform: translateZ(-1em)
+        translateX(pow(-1,$i)*$rHH/2);
     }
   }
 }
@@ -134,12 +138,10 @@ ul {
   }
 }
 .O2 { /* linear molecule */
-  $noO: 2;
-  .C { transform: translateZ(-1em); }
-  @for $i from 1 through $noO {
-    .O:nth-of-type(#{$i+1}) {
+  @for $i from 1 through 2 {
+    .O:nth-of-type(#{$i}) {
       transform: translateZ(-1em)
-        translateX(pow(-1,$i)*$rCO);
+        translateX(pow(-1,$i)*$rOO/2);
     }
   }
 }

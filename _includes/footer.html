@@ -48,3 +48,12 @@
   <script type="text/javascript" src="{{ "/assets/js/typewriter.js" | prepend: site.baseurl }}"></script>
   <script type="text/javascript" src="{{ "/assets/js/anim.js" | prepend: site.baseurl }}"></script>
 {% endif %}
+{% if page.terminal %}
+  <script src="{{ "/assets/vendor/jquery-ui/jquery-ui.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/assets/vendor/jquery.terminal/js/jquery.mousewheel-min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/assets/vendor/jquery.terminal/js/jquery.terminal.js" | prepend: site.baseurl }}"></script>
+  {% include terminal-sprites.html %}
+  <script src="{{ "/assets/js/spawner.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/assets/js/terminal-programs.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/assets/js/terminal.js" | prepend: site.baseurl }}"></script>
+{% endif %}

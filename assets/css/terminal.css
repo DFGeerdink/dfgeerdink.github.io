@@ -1,0 +1,318 @@
+/*
+ * Styles for the Terminal page.
+ *
+ * Adapted from the CodePen "Resizable Terminal + shell.js css" by
+ * Jakub T. Jankiewicz: https://codepen.io/jcubic/pen/WZvYGj
+ */
+
+/* jQuery UI resizable handles (from jquery-ui.css 1.13.3, MIT, OpenJS Foundation) */
+.ui-resizable{position:relative}
+.ui-resizable-handle{position:absolute;font-size:0.1px;display:block;-ms-touch-action:none;touch-action:none}
+.ui-resizable-disabled .ui-resizable-handle,.ui-resizable-autohide .ui-resizable-handle{display:none}
+.ui-resizable-s{cursor:s-resize;height:7px;width:100%;bottom:0;left:0}
+.ui-resizable-e{cursor:e-resize;width:7px;right:0;top:0;height:100%}
+.ui-resizable-se{cursor:se-resize;width:12px;height:12px;right:1px;bottom:1px}
+
+/*
+ * #terminal-demo marks where terminal windows open, in the .post-content
+ * text column, and holds the dock for minimised windows at its bottom. The
+ * windows themselves live in div.post (.terminal-bounds), so they can be
+ * moved around and maximised within it.
+ */
+#terminal-demo {
+    position: relative;
+    width: calc(100% - 2.5rem);
+    max-width: 47.5rem;
+    height: 380px;
+    margin: 0 auto 2.5rem;
+    font-family: 'Titillium Web', 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 1rem;
+}
+/*
+ * keep the windows' z-index below the fixed site header, and give them at
+ * least a screen's height to move around and be maximised in
+ */
+.terminal-bounds {
+    isolation: isolate;
+    min-height: 100vh;
+}
+/*
+ * shell.js sizes its window chrome in em relative to html{font-size:75%};
+ * that rule was removed from the vendored copy, so set the base size here.
+ */
+.terminal-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Titillium Web', 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1;
+}
+.terminal-window.is-maximised {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+.terminal-window.is-minimised {
+    display: none;
+}
+.terminal-window.is-minimising {
+    animation: terminal-minimise 0.2s ease-in forwards;
+}
+.terminal-window.is-restoring {
+    animation: terminal-minimise 0.2s ease-out reverse;
+}
+/*
+ * No scale() here: jQuery Terminal measures its pixel density with
+ * getBoundingClientRect, which includes transforms, so a scaled window
+ * would end up with a huge font.
+ */
+@keyframes terminal-minimise {
+    to {
+        transform: translateY(40%);
+        opacity: 0;
+    }
+}
+/*
+ * The welcome text glows like the Voyager Golden Record drawings: the same
+ * pulse and white, magenta and cyan shadows as anim-glow in main.css, but
+ * with much smaller blurs so it stays sharp around letters
+ */
+.terminal .terminal-welcome {
+    display: inline-block;
+    color: #c38bff;
+    /* jQuery Terminal colours the inner spans with var(--color) */
+    --color: #c38bff;
+    animation: terminal-welcome-glow 3s ease-in-out infinite;
+    /* set by top, which redraws its glowing line every second */
+    animation-delay: var(--glow-delay, 0s);
+}
+@keyframes terminal-welcome-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, .1))
+                drop-shadow(-1px -1px 6px rgba(255, 0, 255, .1))
+                drop-shadow(1px 1px 12px rgba(0, 255, 255, .1));
+    }
+    50% {
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, .9))
+                drop-shadow(-1px -1px 6px rgba(255, 0, 255, .9))
+                drop-shadow(1px 1px 12px rgba(0, 255, 255, .9));
+    }
+}
+/*
+ * top: all text glows more as --glow rises from 0 to 1 (and pulses a little
+ * above it) during top --enlightenment; the indestructible drop shines the
+ * brightest
+ */
+.terminal .top-text {
+    --color: color-mix(in srgb, #aaa, #fff calc(var(--glow, 0) * 70%));
+    text-shadow: 0 0 calc(var(--glow, 0) * 4px) rgba(255, 255, 255, calc(var(--glow, 0) * .8)),
+                 0 0 calc(var(--glow, 0) * 10px) rgba(255, 0, 255, calc(var(--glow, 0) * .6)),
+                 0 0 calc(var(--glow, 0) * 18px) rgba(0, 255, 255, calc(var(--glow, 0) * .4));
+}
+/* everything before top --enlightenment is hidden while it runs */
+.terminal.is-enlightened .terminal-output > div:not(:last-child) {
+    display: none;
+}
+.terminal .top-drop {
+    --color: color-mix(in srgb, #c38bff, #fff calc(var(--glow, 0) * 50%));
+    text-shadow: 0 0 4px rgba(255, 255, 255, .9),
+                 0 0 calc(6px + var(--glow, 0) * 12px) rgba(195, 139, 255, .9),
+                 0 0 calc(var(--glow, 0) * 30px) rgba(0, 255, 255, .6);
+}
+@media (prefers-reduced-motion: reduce) {
+    .terminal .terminal-welcome {
+        animation: none;
+    }
+}
+.terminal-dock {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    z-index: 10000;
+    display: flex;
+    gap: 8px;
+    transform: translateX(-50%);
+}
+.terminal-dock button {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #555;
+    border-radius: 10px;
+    background: #300924;
+    color: #ddd;
+    font: bold 14px/1 monospace;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.15s ease;
+}
+.terminal-dock button:hover,
+.terminal-dock button:focus-visible {
+    transform: translateY(-3px);
+}
+@media (prefers-reduced-motion: reduce) {
+    .terminal-window.is-minimising,
+    .terminal-window.is-restoring {
+        animation-duration: 1ms;
+    }
+}
+
+/* Pen styles */
+body .shell {
+    width: 600px;
+    max-width: 100%;
+    height: 320px;
+}
+.shell .status-bar .buttons a {
+    text-decoration: none;
+}
+body .shell .terminal {
+    height: calc(100% - 29px);
+    --size: 1.1;
+    padding-bottom: 0;
+}
+body .shell .terminal .cmd {
+    margin-bottom: 10px;
+}
+.shell .typed-cursor, .shell .cursor {
+    background: transparent;
+}
+.shell > .status-bar .title {
+    cursor: move;
+}
+.shell .terminal {
+    --color: #aaa;
+}
+.shell.ubuntu .terminal {
+    --background: #300924;
+}
+/*
+ * overwrite shell.js style because shell.js
+ * selectors are stronger then terminal ones
+ */
+.cmd span.cursor {
+    animation: none;
+    width: auto;
+    background-color: var(--background, #000);
+}
+.shell.ubuntu .content {
+    background-color: var(--background, #222) !important;
+}
+.shell .terminal.content {
+    font-size: calc(var(--size, 1) * 12px);
+}
+.cmd {
+    background-color: inherit;
+}
+.terminal > .resizer, .terminal > .font .resizer {
+    visibility: visible;
+    pointer-events: none;
+}
+.terminal::-webkit-scrollbar-track {
+    border: 1px solid var(--color, #aaa);
+    background-color: var(--background);
+}
+.terminal::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--background);
+}
+.terminal::-webkit-scrollbar-thumb {
+    background-color: var(--color, #aaa);
+}
+
+/*
+ * Sprites spawned from the terminal (assets/js/spawner.js): molecules,
+ * whose geometry comes from molecules.css (after Ana Tudor), and elements
+ * from elsewhere on the site.
+ */
+.spawn-layer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    overflow: hidden;
+    pointer-events: none;
+}
+.spawn-sprite,
+.spawn-fragment {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+.molecule-sprite {
+    perspective: 32em;
+}
+/* a slow tumble instead of the 4s spin on the Molecules page */
+.molecule-sprite .molecule {
+    margin: 0;
+    animation: rot var(--spin, 30s) linear var(--phase, 0s) infinite var(--direction, normal);
+}
+/* counter-rotate the spheres with the same timing so their shine stays put */
+.molecule-sprite .atom:before {
+    animation: rotr var(--spin, 30s) linear var(--phase, 0s) infinite var(--direction, normal);
+}
+.molecule-sprite .atom,
+.spawn-element .spawn-sway > * {
+    pointer-events: auto;
+    cursor: pointer;
+}
+/* elements rock gently instead of tumbling */
+.spawn-sway {
+    animation: spawn-sway 6s ease-in-out infinite alternate;
+}
+@keyframes spawn-sway {
+    from {
+        transform: rotate(-6deg);
+    }
+    to {
+        transform: rotate(6deg);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .molecule-sprite .molecule,
+    .molecule-sprite .atom:before,
+    .spawn-sway {
+        animation: none;
+    }
+}
+
+/*
+ * Plaque drawings from the Voyager Golden Record post (main.css draws them
+ * in white for a dark page); here they are drawn in the site's purple.
+ */
+.sprite-plaque {
+    color: #7D7DB0;
+}
+.sprite-plaque .plaque-part,
+svg.sprite-plaque {
+    display: block;
+    width: 24em;
+    height: auto;
+}
+.sprite-plaque .plaque-stroke {
+    stroke: currentColor;
+}
+/* the glow is made for a dark page and looks like haze on a light one */
+.sprite-plaque.is-drawing .plaque-part {
+    animation: none;
+}
+.sprite-plaque.is-drawing .plaque-part .svg-anim-fill {
+    animation: line-anim var(--dur, 0.5s) ease forwards var(--d), sprite-fill 0.5s ease forwards calc(var(--d) + var(--dur, 0.5s));
+}
+/* fragments show the finished drawing */
+.sprite-plaque.spawn-fragment .plaque-stroke {
+    stroke-dashoffset: 0;
+}
+.sprite-plaque.spawn-fragment .svg-anim-fill {
+    fill: currentColor;
+}
+@keyframes sprite-fill {
+    to {
+        fill: currentColor;
+    }
+}

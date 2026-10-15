@@ -1,0 +1,28 @@
+/*
+ * Site-wide base rules.
+ *
+ * These used to reach every page through assets/css/molecules.css, which
+ * was loaded globally. That stylesheet is now only loaded on the pages that
+ * use it, so the rules that shaped the rest of the site live here instead:
+ * - body color: the purple page titles
+ * - html background: the black background around and below the footer
+ * - ul / ul li: list spacing, e.g. the footer links and the home page posts
+ */
+html {
+  background: black;
+  font: 100% Arial Narrow, sans-serif;
+}
+
+body {
+  margin: 0;
+  color: #7D7DB0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+ul li {
+  margin: 2em;
+}

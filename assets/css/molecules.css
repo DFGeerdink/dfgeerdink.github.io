@@ -1,11 +1,19 @@
+/*
+ * Pure CSS 3D molecules.
+ *
+ * Based on "Pure CSS Animated 3D Molecules (alpha)" by Ana Tudor:
+ * https://codepen.io/thebabydino/pen/DzzjNd
+ *
+ * Compiled from ../scss/molecules.scss.
+ */
 /* line 17, ../scss/molecules.scss */
-html {
+html:has(ul.set) {
   background: black;
   font: 100% Arial Narrow, sans-serif;
 }
 
 /* line 21, ../scss/molecules.scss */
-body {
+html:has(ul.set) body {
   margin: 0;
   color: #7D7DB0;
 }
@@ -17,12 +25,12 @@ body {
 }
 
 /* line 26, ../scss/molecules.scss */
-ul {
+.set, .molecule {
   padding: 0;
   list-style: none;
 }
 /* line 29, ../scss/molecules.scss */
-ul li {
+.set li {
   margin: 2em;
 }
 
@@ -125,7 +133,6 @@ ul li {
   min-height: 10em;
   position: relative;
   transform-style: preserve-3d;
-  animation: transl 4s linear infinite;
   animation: rot 4s linear infinite;
   animation-play-state: running;
   pointer-events: none;
@@ -161,11 +168,6 @@ ul li {
   animation-play-state: running;
 }
 
-@keyframes transl {
-  to {
-    transform: translate(3em, 0);
-  }
-}
 @keyframes rot {
   to {
     transform: rotate(360deg) rotateY(360deg) rotateX(360deg);
@@ -177,12 +179,11 @@ ul li {
   }
 }
 /* line 115, ../scss/molecules.scss */
-.H2 .O {
-  transform: translateZ(-1em);
-}
-/* line 118, ../scss/molecules.scss */
 .H2 .H:nth-of-type(1) {
-  transform: translateZ(-1em) rotateY(-52.225deg) translateZ(2.575em) rotateY(52.225deg);
+  transform: translateZ(-1em) translateX(-0.8em);
+}
+.H2 .H:nth-of-type(2) {
+  transform: translateZ(-1em) translateX(0.8em);
 }
 
 /* line 127, ../scss/molecules.scss */
@@ -202,17 +203,11 @@ ul li {
 .O2 {
   /* linear molecule */
 }
-/* line 138, ../scss/molecules.scss */
-.O2 .C {
-  transform: translateZ(-1em);
+.O2 .O:nth-of-type(1) {
+  transform: translateZ(-1em) translateX(-1.775em);
 }
-/* line 140, ../scss/molecules.scss */
 .O2 .O:nth-of-type(2) {
-  transform: translateZ(-1em) translateX(-3.325em);
-}
-/* line 140, ../scss/molecules.scss */
-.O2 .O:nth-of-type(3) {
-  transform: translateZ(-1em) translateX(3.325em);
+  transform: translateZ(-1em) translateX(1.775em);
 }
 
 /* line 146, ../scss/molecules.scss */
